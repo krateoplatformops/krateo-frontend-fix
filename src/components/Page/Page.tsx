@@ -5,10 +5,17 @@ import TabPane from "antd/es/tabs/TabPane";
 
 import styles from "./styles.module.scss";
 
-const Page = () => {
+type PageType = {
+  clientId: string;
+  url: string;
+}
+
+const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
 
   const fetchPage = (clientId: string, url: string) => {
+    console.log(clientId, url);
+
     return {
       component: "Row",
       content: [
@@ -76,9 +83,9 @@ const Page = () => {
       setContentPage(getContent(data)); // root
     }
 
-    const response = fetchPage('12345', location.pathname);
+    const response = fetchPage(clientId, url);
     createPage(response);
-  }, [getContent]);
+  }, [clientId, getContent, url]);
 
   return (
     <section className={styles.page}>
