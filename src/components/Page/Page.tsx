@@ -22,20 +22,77 @@ const Page = ({clientId, url}: PageType) => {
         {
           component: "Col",
           props: {flex: 1},
-          content: [{
-            component: "Widget",
-            element: "Widget1",
-            props: { text: "This is a widget on the side"}
-          }],
-        },
-        {
-          component: "Col",
-          props: {flex: 3},
-          content: [{
-            component: "Widget",
-            element: "Widget2",
-            props: { text: "This is a widget on the body"}
-          }],
+          content: [
+            {
+              component: "Row",
+              content: [
+                {
+                  component: "Col",
+                  props: {flex: 1},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget1",
+                    props: { text: "This is a widget on the side"}
+                  }],
+                },
+                {
+                  component: "Col",
+                  props: {flex: 4},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget2",
+                    props: { text: "This is a widget on the body"}
+                  }],
+                }
+              ],
+            },
+            {
+              component: "Row",
+              content: [
+                {
+                  component: "Col",
+                  props: {flex: 1},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget1",
+                    props: { text: "This is a widget on the side"}
+                  }],
+                },
+                {
+                  component: "Col",
+                  props: {flex: 4},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget2",
+                    props: { text: "This is a widget on the body"}
+                  }],
+                }
+              ],
+            },
+            {
+              component: "Row",
+              content: [
+                {
+                  component: "Col",
+                  props: {flex: 2},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget2",
+                    props: { text: "This is a widget at 50%"}
+                  }],
+                },
+                {
+                  component: "Col",
+                  props: {flex: 2},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget1",
+                    props: { text: "This is a widget at 50%"}
+                  }],
+                }
+              ],
+            }
+          ]
         }
       ]
     }

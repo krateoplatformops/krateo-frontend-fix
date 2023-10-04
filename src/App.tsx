@@ -25,6 +25,12 @@ function App() {
             menu: true,
           },
           {
+            label: "Nuova rotta",
+            path: "/nuova-rotta",
+            icon: "",
+            menu: true,
+          },
+          {
             label: "Projects",
             path: "/projects",
             icon: "",

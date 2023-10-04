@@ -15,6 +15,18 @@
   }
 
   .content {
-    padding: 0 20px;
+    padding: 0 10px;
+
+    :global(.ant-row) {
+      padding: 0;
+    }
+
+    :global(.ant-col) {
+      padding: 10px;
+    }
+
+    :global(.ant-col:has(.ant-col)) {
+      padding: 0;
+    }
   }
 }
