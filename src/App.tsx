@@ -8,6 +8,7 @@ import Page404 from "./pages/Page404";
 import LayoutLogin from "./components/LayoutLogin/LayoutLogin";
 import Login from "./Login";
 import Profile from "./pages/Profile";
+import { getIcon } from "./utils/icons";
 
 function App() {
   const [router, setRouter] = useState<RouteObject[]>([]);
@@ -21,13 +22,13 @@ function App() {
           {
             label: "Dashboard",
             path: "/",
-            icon: "./icons/dashboard.svg",
+            icon: getIcon("dashboard"),
             menu: true,
           },
           {
             label: "Projects",
             path: "/projects",
-            icon: "projects",
+            icon: getIcon("projects"),
             menu: true,
           },
           {
@@ -51,43 +52,43 @@ function App() {
           {
             label: "Templates",
             path: "/templates",
-            icon: "templates",
+            icon: getIcon('templates'),
             menu: true,
           },
           {
             label: "Providers",
             path: "/providers",
-            icon: "providers",
+            icon: getIcon('providers'),
             menu: true,
           },
           {
             label: "Service Status",
             path: "/service-status",
-            icon: "status",
+            icon: getIcon('status'),
             menu: true,
           },
           {
             label: "Organizations",
             path: "/organizations",
-            icon: "organizations",
+            icon: getIcon('organizations'),
             menu: true,
           },
           {
             label: "Logs",
             path: "/logs",
-            icon: "logs",
+            icon: getIcon('logs'),
             menu: true,
           },
           {
             label: "Endpoints",
             path: "/endpoints",
-            icon: "endpoints",
+            icon: getIcon('endpoints'),
             menu: true,
           },
           {
             label: "Licenses",
             path: "/licenses",
-            icon: "licenses",
+            icon: getIcon('licenses'),
             menu: true,
           }
         ],

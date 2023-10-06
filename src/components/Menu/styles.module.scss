@@ -8,12 +8,31 @@
   }
   .menu {
     background-color: transparent;
-    color: $menuitem-color;
-    text-transform: capitalize;
+
+    :global .ant-menu-item {
+      color: $menuitem-color;
+      text-transform: capitalize;
+      width: 100%;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-inline: 0;
+
+      svg {
+        min-height: 22px;
+        min-width: 22px;
+        opacity: .5;
+        transition: all 300ms;
+      }
+    }
 
     :global .ant-menu-item.ant-menu-item-active,
     :global .ant-menu-item.ant-menu-item-active:hover {
       color: $light-color;
+
+      svg {
+        opacity: 1;
+      }
     }
 
     :global .ant-menu-item.ant-menu-item:active {
@@ -23,6 +42,15 @@
     :global .ant-menu-item-selected {
       background-color: $menuitem-bg;
       color: $light-color;
+      border-radius: 0;
+
+      svg {
+        opacity: 1;
+        
+        path{
+          fill: $light-color;
+        }  
+      }
     }
   }
 }
