@@ -21,19 +21,13 @@ function App() {
           {
             label: "Dashboard",
             path: "/",
-            icon: "",
-            menu: true,
-          },
-          {
-            label: "Nuova rotta",
-            path: "/nuova-rotta",
-            icon: "",
+            icon: "./icons/dashboard.svg",
             menu: true,
           },
           {
             label: "Projects",
             path: "/projects",
-            icon: "",
+            icon: "projects",
             menu: true,
           },
           {
@@ -57,43 +51,43 @@ function App() {
           {
             label: "Templates",
             path: "/templates",
-            icon: "",
+            icon: "templates",
             menu: true,
           },
           {
             label: "Providers",
             path: "/providers",
-            icon: "",
+            icon: "providers",
             menu: true,
           },
           {
             label: "Service Status",
             path: "/service-status",
-            icon: "",
+            icon: "status",
             menu: true,
           },
           {
             label: "Organizations",
             path: "/organizations",
-            icon: "",
+            icon: "organizations",
             menu: true,
           },
           {
             label: "Logs",
             path: "/logs",
-            icon: "",
+            icon: "logs",
             menu: true,
           },
           {
             label: "Endpoints",
             path: "/endpoints",
-            icon: "",
+            icon: "endpoints",
             menu: true,
           },
           {
             label: "Licenses",
             path: "/licenses",
-            icon: "",
+            icon: "licenses",
             menu: true,
           }
         ],

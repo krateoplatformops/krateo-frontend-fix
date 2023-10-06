@@ -1,0 +1,28 @@
+@import '../../theme/global.scss';
+
+.menuBar {
+  padding: 10px 0;
+
+  .logo {
+    margin: 0 10px 25px;
+  }
+  .menu {
+    background-color: transparent;
+    color: $menuitem-color;
+    text-transform: capitalize;
+
+    :global .ant-menu-item.ant-menu-item-active,
+    :global .ant-menu-item.ant-menu-item-active:hover {
+      color: $light-color;
+    }
+
+    :global .ant-menu-item.ant-menu-item:active {
+      background-color: transparent;
+    }
+
+    :global .ant-menu-item-selected {
+      background-color: $menuitem-bg;
+      color: $light-color;
+    }
+  }
+}

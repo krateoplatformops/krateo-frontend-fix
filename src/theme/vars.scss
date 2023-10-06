@@ -1,0 +1,23 @@
+// Palette
+$primary-color: #05629A;
+$secondary-color: #303030;
+$light-color: #FFFFFF;
+$dark-color: #000000;
+$background-color: #FBFBFB;
+$border-color: #E1E3E8;
+$text-color: #323B40;
+$menu-bg-start: #005D8B;
+$menu-bg-end: #002F46;
+$menuitem-color: rgba(255, 255, 255, .5);
+$menuitem-bg: rgba(17, 178, 226, .4);
+
+
+// Breakpoints
+$bp-small: 700px;
+$bp-medium: 1280px;
+$bp-large: 1500px;
+
+$bp-range-small:  "(max-width: 699px)";
+$bp-range-medium: "(max-width: 1279px) and (min-width: 700px)";
+$bp-range-large:  "(max-width: 1499px) and (min-width: 1280px)";
+$bp-range-xlarge: "(min-width: 1500px)";

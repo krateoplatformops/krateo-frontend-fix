@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Breadcrumb as AntBreadcrumb } from 'antd';
-import styles from "./styles.module.scss";
 import { BreadcrumbItemType, BreadcrumbSeparatorType } from 'antd/es/breadcrumb/Breadcrumb';
 import { Link, Params, useMatches } from 'react-router-dom';
+import styles from "./styles.module.scss";
 
 const Breadcrumb = () => {
   const [items, setItems] = useState<Partial<BreadcrumbItemType & BreadcrumbSeparatorType>[]>();
