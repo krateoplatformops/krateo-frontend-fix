@@ -21,7 +21,6 @@ const Panel = ({title, tooltip, content, footer}: PanelProps) => {
         ) : undefined
       }
       actions={footer}
-      bodyStyle={{padding: 0, width: 'calc(100% - 48px)', margin: '0 auto'}}
     >
       {content}
     </Card>
