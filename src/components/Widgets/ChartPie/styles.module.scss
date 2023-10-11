@@ -1,0 +1,30 @@
+@import '../../../theme/global.scss';
+
+.chart {
+  position: relative;
+  width: 100%;
+  text-align: center;
+
+  .details {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .label {
+      @include chart-label;
+    }
+
+    .value {
+      @include chart-value;
+    }
+
+    .total {
+      @include chart-total;
+    }
+  }
+}

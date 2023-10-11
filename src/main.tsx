@@ -19,7 +19,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             colorWarning: '#ffaa00',
             colorError: '#f84c4c',
             colorTextBase: '#323b40',
-            colorBgBase: '#fbfbfb'
+            colorBgBase: '#fbfbfb',
+            colorBorder: '#E1E3E8'
           }
         }}
       >

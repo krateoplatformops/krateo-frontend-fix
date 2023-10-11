@@ -1,4 +1,21 @@
 @mixin big-title {
-  font-size: $bigText;
+  font-size: $xlTitleSize;
   font-weight: 300;
+}
+
+@mixin chart-label {
+  text-transform: uppercase;
+  font-size: $defaultTextSize;
+  font-weight: 600;
+}
+
+@mixin chart-value {
+  font-size: $xxlTitleSize;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin chart-total {
+  font-size: $lTitleSize;
+  font-weight: 400;
 }

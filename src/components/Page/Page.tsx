@@ -21,14 +21,47 @@ const Page = ({clientId, url}: PageType) => {
       content: [
         {
           component: "Col",
-          props: {flex: 1},
+          props: {flex: 1, width: '100%'},
           content: [
             {
               component: "Row",
               content: [
                 {
                   component: "Col",
-                  props: {flex: 1},
+                  props:  {xs:24, md:8},
+                  content: [{
+                    component: "Widget",
+                    element: "ChartPie",
+                    props: {
+                      title: "templates",
+                      tooltip: "this is a beautiful pie chart",
+                      label: "used",
+                      value: 428,
+                      total: 695,
+                      status: "default"
+                    }
+                  }],
+                },
+                {
+                  component: "Col",
+                  props:  {xs:24, md:16},
+                  content: [{
+                    component: "Widget",
+                    element: "ChartLine",
+                    props: {
+                      title: "trend",
+                      tooltip: "this is a beautiful line chart",
+                    }
+                  }],
+                }
+              ],
+            },
+            {
+              component: "Row",
+              content: [
+                {
+                  component: "Col",
+                  props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
                     element: "Widget1",
@@ -37,7 +70,7 @@ const Page = ({clientId, url}: PageType) => {
                 },
                 {
                   component: "Col",
-                  props: {flex: 4},
+                  props:  {xs:24, md:16},
                   content: [{
                     component: "Widget",
                     element: "Widget2",
@@ -51,30 +84,7 @@ const Page = ({clientId, url}: PageType) => {
               content: [
                 {
                   component: "Col",
-                  props: {flex: 1},
-                  content: [{
-                    component: "Widget",
-                    element: "Widget1",
-                    props: { text: "This is a widget on the side"}
-                  }],
-                },
-                {
-                  component: "Col",
-                  props: {flex: 4},
-                  content: [{
-                    component: "Widget",
-                    element: "Widget2",
-                    props: { text: "This is a widget on the body"}
-                  }],
-                }
-              ],
-            },
-            {
-              component: "Row",
-              content: [
-                {
-                  component: "Col",
-                  props: {flex: 2},
+                  props: {xs:24, md:12}, //{flex: '1', md: 24},
                   content: [{
                     component: "Widget",
                     element: "Widget2",
@@ -83,7 +93,7 @@ const Page = ({clientId, url}: PageType) => {
                 },
                 {
                   component: "Col",
-                  props: {flex: 2},
+                  props: {xs:24, md:12}, //{flex: '1', md: 24},
                   content: [{
                     component: "Widget",
                     element: "Widget1",
@@ -98,25 +108,25 @@ const Page = ({clientId, url}: PageType) => {
     }
   }
 
-  const getContent = useCallback((data): ReactElement => {
-    const renderComponent = (data) => {
+  const getContent = useCallback((data, i): ReactElement => {
+    const renderComponent = (data, index) => {
       switch (data.component) {
         case "Row":
-          return <Row {...data.props} className={styles.row}>{ getContent(data.content) }</Row>
+          return <Row key={`row_${index}`} {...data.props} className={styles.row}>{ getContent(data.content, index+1) }</Row>
           break;
   
         case "Col":
-          return <Col {...data.props} className={styles.col}>{ getContent(data.content) }</Col>
+          return <Col key={`col_${index}`} {...data.props} className={styles.col}>{ getContent(data.content, index+1) }</Col>
   
         case "Tabs":
-          return <Tabs {...data.props} className={styles.tabs}>{ getContent(data.content) }</Tabs>
+          return <Tabs key={`tabs_${index}`} {...data.props} className={styles.tabs}>{ getContent(data.content, index+1) }</Tabs>
         
         case "TabPane":
-          return <TabPane {...data.props} className={styles.tabpane}>{ getContent(data.content) }</TabPane>
+          return <TabPane key={`tabpane_${index}`} {...data.props} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
         
         case "Widget": {
           const Component = widgets[data.element];
-          return <Component {...data.props} />
+          return <Component key={`widget_${index}`} {...data.props} />
         }
   
         default: // null -> exit recoursive loop
@@ -129,15 +139,15 @@ const Page = ({clientId, url}: PageType) => {
     // data is the array of elements, root is an object
     if (!data.length) {
       // root element
-      return renderComponent(data);
+      return renderComponent(data, i);
     } else {
-      return data.map((el) => renderComponent(el));
+      return data.map((el, index) => renderComponent(el, index));
     }
   }, []);
 
   useEffect(() => {
     const createPage = (data) => {
-      setContentPage(getContent(data)); // root
+      setContentPage(getContent(data, 1)); // root
     }
 
     const response = fetchPage(clientId, url);
