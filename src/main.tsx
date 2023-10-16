@@ -20,7 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             colorError: '#f84c4c',
             colorTextBase: '#323b40',
             colorBgBase: '#fbfbfb',
-            colorBorder: '#E1E3E8'
+            colorBorder: '#E1E3E8',
+            colorInfo: '#05629A', //bar charts
           }
         }}
       >

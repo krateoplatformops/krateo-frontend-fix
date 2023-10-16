@@ -13,6 +13,7 @@ const Panel = ({title, tooltip, content, footer}: PanelProps) => {
   return (
     <Card
       title={title}
+      headStyle={{borderBottom: 'none'}}
       bordered={false}
       extra={tooltip ? (
         <Tooltip title={tooltip}>

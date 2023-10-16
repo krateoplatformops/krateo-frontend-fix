@@ -1,6 +1,7 @@
 // Palette
 $primary-color: #05629A;
 $secondary-color: #303030;
+$highlight-color: #11B2E2;
 $light-color: #FFFFFF;
 $dark-color: #000000;
 $background-color: #f5f5f5;
@@ -10,7 +11,9 @@ $menu-bg-start: #005D8B;
 $menu-bg-end: #002F46;
 $menuitem-color: rgba(255, 255, 255, .5);
 $menuitem-bg: rgba(17, 178, 226, .4);
-
+$error-color: #F84C4C;
+$success-color: #00D690;
+$warning-color: #FFAA00;
 
 // Breakpoints
 $bp-small: 700px;

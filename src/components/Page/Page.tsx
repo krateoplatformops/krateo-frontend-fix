@@ -64,17 +64,26 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
-                    element: "Widget1",
-                    props: { text: "This is a widget on the side"}
+                    element: "ChartBars",
+                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
                   }],
                 },
                 {
                   component: "Col",
-                  props:  {xs:24, md:16},
+                  props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
-                    element: "Widget2",
-                    props: { text: "This is a widget on the body"}
+                    element: "ChartBars",
+                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
+                  }],
+                },
+                {
+                  component: "Col",
+                  props: {xs:24, md:8},
+                  content: [{
+                    component: "Widget",
+                    element: "ChartBars",
+                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
                   }],
                 }
               ],

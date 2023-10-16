@@ -1,6 +1,7 @@
 import { Line } from "@ant-design/charts"
 import Panel from "../../Panel/Panel";
 import styles from "./styles.module.scss";
+import { theme } from "antd";
 
 const mockData = [
   {
@@ -354,12 +355,17 @@ type ChartLineType = {
   tooltip?: string;
 }
 
+const { useToken } = theme;
+
+
 const ChartLine = ({title, tooltip}: ChartLineType) => {
+  const { token } = useToken();
 
   const config = {
     animation:false,
     data: mockData,
     // padding: 'auto',
+    color: token.colorLink,
     xField: 'Date',
     yField: 'scales',
     xAxis: {
