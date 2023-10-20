@@ -1,17 +1,12 @@
-import { ReactNode } from "react";
 import { Button, Card, Tooltip } from "antd";
 import { QuestionCircleOutlined } from '@ant-design/icons';
-
-type PanelProps = {
-  title: string;
-  tooltip?: string;
-  content: ReactNode;
-  footer?: ReactNode[];
-}
+import styles from "./styles.module.scss";
+import { PanelProps } from "./types";
 
 const Panel = ({title, tooltip, content, footer}: PanelProps) => {
   return (
     <Card
+      className={styles.panel}
       title={title}
       headStyle={{borderBottom: 'none'}}
       bordered={false}

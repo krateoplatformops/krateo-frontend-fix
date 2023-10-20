@@ -6,14 +6,22 @@ import ErrorPage from "./pages/ErrorPage";
 import Layout from "./components/Layout/Layout";
 import Page404 from "./pages/Page404";
 import LayoutLogin from "./components/LayoutLogin/LayoutLogin";
-import Login from "./Login";
+import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import { getIcon } from "./utils/icons";
+import { useGetAppDataQuery } from "./features/app/appApiSlice";
+import { Space, Spin, Typography, message } from "antd";
+import catchError from "./utils/catchError";
+import getClientIdFromPath from "./utils/getClientIdFromPath";
 
 function App() {
+  const clientId = getClientIdFromPath();
   const [router, setRouter] = useState<RouteObject[]>([]);
+  const {data, isLoading, isFetching, isError} = useGetAppDataQuery(clientId);
+  const [messageApi, contextHolder] = message.useMessage();
+  const messageKey = 'appMessageKey';
 
-  const fetchAppData = (clientId) => {
+  const fetchPageData = (clientId) => {
     console.log(clientId);
     
     return (
@@ -92,12 +100,6 @@ function App() {
             menu: true,
           }
         ],
-        userData: {
-          fullname: "Mario Rossi",
-          role: "Administrator",
-          email: "mario.rossi@acme.com",
-          picture: "https://images.nightcafe.studio/jobs/IzqyRMS5p9FDntfbx7AD/IzqyRMS5p9FDntfbx7AD--1--yvojp_15.625x.jpg?tr=w-1600,c-at_max",
-        },
         notifications: [
           {
             title: "",
@@ -111,12 +113,18 @@ function App() {
   }
 
   useEffect(() => {
-    const clientId = location.host.slice(0, location.host.indexOf("."));
     if (clientId) {
-      const result = fetchAppData(clientId);
+      // get application data (after logged)
+      const result = fetchPageData(clientId);
       createRoutes(clientId, result);
     }
-  }, []);
+  }, [clientId]);
+
+  useEffect(() => {
+    if (isError) {
+      messageApi.open({key: messageKey, type: 'error', content: catchError()});
+    }
+  }, [isError, messageApi]);
 
   const createRoutes = (clientId, data) => {
     const routes:RouteObject[] = data.routes.map((r) => (
@@ -142,7 +150,6 @@ function App() {
           path: "/",
           element: <Layout
                       menu={data.routes.filter(el => el.menu === true)}
-                      user={data.userData}
                       notifications={data.notifications}
                     />,
           errorElement: <ErrorPage />,
@@ -161,9 +168,18 @@ function App() {
 
   return (
     <>
+    {contextHolder}
+    {JSON.stringify(data)}
     {
-      router.length > 0 &&
-      <RouterProvider router={createBrowserRouter(router)} fallbackElement={<Skeleton />} />
+      (isLoading || isFetching) ?
+        <Space direction="vertical" size="large" style={{width: '100%', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
+          <Spin size="large" />
+          <Typography.Text>Krateo loading app data...</Typography.Text>
+        </Space>
+      : (
+        router.length > 0 &&
+        <RouterProvider router={createBrowserRouter(router)} fallbackElement={<Skeleton />} />
+      )
     }
     </>
   )

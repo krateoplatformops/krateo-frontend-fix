@@ -4,25 +4,27 @@ import type { MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-const items: MenuProps['items'] = [
-  {
-    label: <Link to="/profile">Profile</Link>,
-    key: '0',
-  },
-  {
-    label: <Link to="">Logout</Link>,
-    key: '1',
-  },
-];
-
 type UserLoggedProps = {
   fullname: string;
   role: string;
   picture?: string;
+  onLogout: () => void;
 }
 
-const UserLogged = ({fullname, role, picture}: UserLoggedProps) => {
+const UserLogged = ({fullname, role, picture, onLogout}: UserLoggedProps) => {
   const [ sign, setSign ] = useState('');
+
+  const items: MenuProps['items'] = [
+    {
+      label: <Link to="/profile">Profile</Link>,
+      key: '0',
+    },
+    {
+      label: <Link to="">Logout</Link>,
+      key: '1',
+      onClick: onLogout
+    },
+  ];
 
   useEffect(() => {
     if (!picture) {

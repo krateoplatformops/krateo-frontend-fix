@@ -4,14 +4,12 @@ import { Col, Row, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 
 import styles from "./styles.module.scss";
-
-type PageType = {
-  clientId: string;
-  url: string;
-}
+import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
+import { PageType } from "./type";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
+  const {data, isLoading, isError} = useGetPageContentQuery({clientId, url});
 
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);

@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 
 const { Header, Sider, Content } = AntLayout;
 
-const Layout = ({menu, user, notifications}) => {
+const Layout = ({menu, notifications}) => {
   // const [drawerData, setDrawerData] = useState<DrawerPanelType>();
   // const 
   return (
@@ -20,7 +20,7 @@ const Layout = ({menu, user, notifications}) => {
       </Sider>
       <AntLayout>
         <Header className={styles.header}>
-          <AppBar user={user} />
+          <AppBar />
         </Header>
         <Content className={styles.content}>
           <Outlet />

@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
 import { ConfigProvider } from 'antd'
-import { api } from './api/api.ts'
 import App from './App.tsx'
 import "./theme/index.scss"
+import { Provider } from 'react-redux'
+import { store } from './redux/store.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ApiProvider api={api}>
+    <Provider store={store}>
       <ConfigProvider
         theme={{
           token: {
@@ -27,6 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <App />
       </ConfigProvider>
-    </ApiProvider>
+    </Provider>
   </React.StrictMode>,
 )
