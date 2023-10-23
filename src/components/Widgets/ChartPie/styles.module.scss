@@ -5,6 +5,10 @@
   width: 100%;
   text-align: center;
 
+  :global canvas {
+    max-width: 100%;
+  }
+
   .details {
     position: absolute;
     height: 100%;

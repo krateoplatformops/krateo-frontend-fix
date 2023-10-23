@@ -17,6 +17,8 @@
 
   .content {
     padding: 0 10px;
+    overflow-y: scroll;
+    height: calc(100vh - 55px);
 
     :global(.ant-row) {
       padding: 0;

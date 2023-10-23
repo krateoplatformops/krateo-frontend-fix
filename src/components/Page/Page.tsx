@@ -80,8 +80,8 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
-                    element: "ChartBars",
-                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
+                    element: "ChartMultipleBars",
+                    props: { title: "System Status", tooltip: "Lorem ipsum dolor sit amet", data: []}
                   }],
                 }
               ],
