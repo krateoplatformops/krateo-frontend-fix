@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../redux/store';
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL;
+const baseUrl = 'https://api.krateoplatformops.io/authn'; // import.meta.env.VITE_API_BASE_URL;
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const kubeConfig = (getState()  as RootState).auth?.kubeConfig;
+    const kubeConfig = (getState()  as RootState).auth?.data;
     if (kubeConfig) {
       // headers.set("authorization", `Bearer ${token}`);
       /**

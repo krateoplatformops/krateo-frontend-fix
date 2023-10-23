@@ -4,14 +4,19 @@ import { AuthModesType, AuthResponseType, LoginFormType } from "../../pages/Logi
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAuthModes: builder.query<AuthModesType, string>({
-      query: (clientID) => `/authModes/${clientID}`,
+      // query: (clientID) => `/authModes/${clientID}`,
+      query: (clientID) => `/`,
     }),
-    authentication: builder.mutation<AuthResponseType, {body: LoginFormType, url: string}>({
+    authentication: builder.query<AuthResponseType, {body: LoginFormType, url: string}>({
       query: (data) => ({
-        url: data.url,
-        method: 'POST',
-        body: data.body,
+        url: `${data.url}`,
+        prepareHeaders: (headers) => (
+          headers.set("Authorization", `Basic ${btoa(`${data.body.email}:${data.body.password}`)}`)
+        )
       }),
+    }),
+    socialAuthentication: builder.query<AuthResponseType, {url: string}>({
+      query: (data) => `${data.url}`
     }),
     // getLicenseState: builder.query({
     //   query: (clientID) => `/license/${clientID}`,
@@ -38,7 +43,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
 // Export the auto-generated hook
 export const {
   useGetAuthModesQuery,
-  useAuthenticationMutation,
+  useLazyAuthenticationQuery,
+  useLazySocialAuthenticationQuery,
   // useGetPageContentQuery,
   // useGetLicenseStateQuery,
   // useUpdateLicenseMutation,

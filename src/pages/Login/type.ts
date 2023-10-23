@@ -44,8 +44,7 @@ export type AuthResponseType = {
 }
 
 export type AuthModesType = {
-  authModes: {
-    type: string;
-    url: string;
-  }[];
-}
+    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    name: string;
+    path: string;
+}[];

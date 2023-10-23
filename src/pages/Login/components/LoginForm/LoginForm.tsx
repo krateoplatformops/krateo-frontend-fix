@@ -20,6 +20,7 @@ const LoginForm = ({
         onFinish={onSubmit}
         autoComplete="off"
         disabled={isLoading}
+        requiredMark={false}
       >
         <Form.Item
           label="Email"
