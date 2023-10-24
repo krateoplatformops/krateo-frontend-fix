@@ -13,6 +13,7 @@ import { useGetAppDataQuery } from "./features/app/appApiSlice";
 import { Space, Spin, Typography, message } from "antd";
 import catchError from "./utils/catchError";
 import getClientIdFromPath from "./utils/getClientIdFromPath";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
   const clientId = getClientIdFromPath();
@@ -147,6 +148,16 @@ function App() {
           ]
         },
         {
+          path: "/auth/github",
+          element: <Auth />,
+          children: [
+            {
+              index: true,
+              element: <Login />
+            }
+          ]
+        },
+        {
           path: "/",
           element: <Layout
                       menu={data.routes.filter(el => el.menu === true)}
@@ -169,7 +180,6 @@ function App() {
   return (
     <>
     {contextHolder}
-    {JSON.stringify(data)}
     {
       (isLoading || isFetching) ?
         <Space direction="vertical" size="large" style={{width: '100%', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>

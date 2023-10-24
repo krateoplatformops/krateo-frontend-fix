@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Panel from "../../components/Panel/Panel";
 import { useLazyAuthenticationQuery, useGetAuthModesQuery, useLazySocialAuthenticationQuery } from "../../features/auth/authApiSlice";
-import { setUser } from "../../features/auth/authSlice";
+import { AuthState, setUser } from "../../features/auth/authSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import LoginForm from "./components/LoginForm/LoginForm";
 import { LoginFormType } from "./type";
@@ -10,7 +10,7 @@ import { Divider, Result, message } from "antd";
 import catchError from "../../utils/catchError";
 import Skeleton from "../../components/Skeleton/Skeleton";
 import getClientIdFromPath from "../../utils/getClientIdFromPath";
-import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import SocialLogin from './components/SocialLogin/SocialLogin';
 
 const Login = () => {
   /**
@@ -38,7 +38,7 @@ const Login = () => {
   const onBasicSubmit = async (body: LoginFormType) => {
     const url = data?.find((el) => el.name === "basic")?.path;
 
-    if (body.email && body.password && url) {
+    if (body.username && body.password && url) {
       try {
         const userData = await authentication({body, url}).unwrap();
         dispatch(setUser(userData));
@@ -53,14 +53,7 @@ const Login = () => {
   };
 
   const onSocialLogin = async (url: string) => {
-    try {
-      const userData = await socialAuthentication({url}).unwrap();
-        dispatch(setUser(userData));
-        navigate("/");
-    } catch (err) {
-      const errorMessage = (err as {data: {errorMessage: string}})?.data?.errorMessage;
-      messageApi.open({key: messageKey, type: 'error', content: catchError(errorMessage)});
-    }
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/${url}`;
   }
 
   const renderPanelContent = () => (

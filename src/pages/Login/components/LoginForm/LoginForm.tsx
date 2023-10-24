@@ -23,11 +23,11 @@ const LoginForm = ({
         requiredMark={false}
       >
         <Form.Item
-          label="Email"
-          name="email"
-          rules={[{ required: true, type: 'email', message: 'Insert a valid email address' }]}
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: 'Insert a username' }]}
         >
-          <Input />
+          <Input size='large' />
         </Form.Item>
 
         <Form.Item
@@ -35,7 +35,7 @@ const LoginForm = ({
           name="password"
           rules={[{ required: true, message: 'Insert a password' }]}
         >
-          <Input.Password />
+          <Input.Password size='large' />
         </Form.Item>
 
         <div className={styles.linkPassword}>
@@ -43,7 +43,7 @@ const LoginForm = ({
         </div>
         
         <Form.Item>
-          <Button className={styles.loginButton} type="primary" htmlType="submit">
+          <Button size='large' className={styles.loginButton} type="primary" htmlType="submit">
             Sign In
           </Button>
         </Form.Item>

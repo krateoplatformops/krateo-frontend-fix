@@ -10,9 +10,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
     authentication: builder.query<AuthResponseType, {body: LoginFormType, url: string}>({
       query: (data) => ({
         url: `${data.url}`,
-        prepareHeaders: (headers) => (
-          headers.set("Authorization", `Basic ${btoa(`${data.body.email}:${data.body.password}`)}`)
-        )
+        headers: {
+          Authorization: `Basic ${btoa(`${data.body.username}:${data.body.password}`)}`
+        },
       }),
     }),
     socialAuthentication: builder.query<AuthResponseType, {url: string}>({

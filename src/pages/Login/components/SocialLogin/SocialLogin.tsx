@@ -35,6 +35,7 @@ const SocialLogin = ({methodName, onClick}: SocialLoginType) => {
         icon={method.icon}
         onClick={() => onClick(method.url)}
         className={styles[method.className]}
+        size='large'
       >{method.label}</Button>
     :
      <></>
