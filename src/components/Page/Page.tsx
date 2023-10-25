@@ -1,11 +1,12 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import widgets from "../Widgets/index";
-import { Col, Row, Tabs } from "antd";
+import { Col, Row, Tabs, Tag } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 
 import styles from "./styles.module.scss";
 import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
+import { ApartmentOutlined } from "@ant-design/icons";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
@@ -94,8 +95,17 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:12}, //{flex: '1', md: 24},
                   content: [{
                     component: "Widget",
-                    element: "Widget2",
-                    props: { text: "This is a widget at 50%"}
+                    element: "CardTemplate",
+                    props: {
+                      icon: <ApartmentOutlined />,
+                      color: "#11B2E2",
+                      title: "Lorem Ipsum dolor sit",
+                      status: "",
+                      date: "",
+                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                      tags: [],
+                      onDelete: () => {}
+                    }
                   }],
                 },
                 {
@@ -103,8 +113,40 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:12}, //{flex: '1', md: 24},
                   content: [{
                     component: "Widget",
+                    element: "CardTemplate",
+                    props: {
+                      icon: <ApartmentOutlined />,
+                      color: "#F84C4C",
+                      title: "Lorem Ipsum dolor sit",
+                      status: "archived",
+                      date: "Sep 15th 2023 08:15:43",
+                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                      tags: [<Tag>Lorem ipsum</Tag>, <Tag>Lorem ipsum</Tag>],
+                      onDelete: () => {}
+                    }
+                  }],
+                },
+              ],
+            },
+            {
+              component: "Row",
+              content: [
+                {
+                  component: "Col",
+                  props: {xs:24, md:16},
+                  content: [{
+                    component: "Widget",
                     element: "Widget1",
-                    props: { text: "This is a widget at 50%"}
+                    props: { text: "This is a widget at 66%"}
+                  }],
+                },
+                {
+                  component: "Col",
+                  props: {xs:24, md:8},
+                  content: [{
+                    component: "Widget",
+                    element: "Widget2",
+                    props: { text: "This is a widget at 33%"}
                   }],
                 }
               ],

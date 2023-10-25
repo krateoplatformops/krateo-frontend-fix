@@ -133,8 +133,8 @@ const ChartMultipleBars = ({title, tooltip, data}: ChartMultipleBarsType) => {
       content={
         <div className={styles.chart}>
           {
-            data.map((el) => (
-              <div className={styles.chartBarsRow}>
+            data.map((el, index) => (
+              <div key={`multiplebar_${index}`} className={styles.chartBarsRow}>
                 <div className={styles.chartBarsData}>
                   <div className={styles.chartBarsLabel}>{el.label}</div>
                   <Space size="large" >
@@ -145,8 +145,9 @@ const ChartMultipleBars = ({title, tooltip, data}: ChartMultipleBarsType) => {
                 </div>
                 <div className={styles.chartBarsList}>
                   {
-                    el.bars.map((bar) => (
+                    el.bars.map((bar, i) => (
                       <Progress
+                        key={`progess_${i}`}
                         className={styles.chartBarsProgress}
                         percent={bar.percentage}
                         size="small"

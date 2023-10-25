@@ -1,0 +1,53 @@
+@import '../../../theme/global.scss';
+
+.card {
+  cursor: pointer;
+
+  :global .ant-card-head {
+    border: none;
+  }
+
+  .header {
+    width: 100%;
+
+    .details {
+      width: 100%;
+
+      .title {
+        font-weight: 300;
+      }
+
+      .subTitle {
+        width: 100%;
+        justify-content: space-between;
+
+        .status {
+          font-weight: 400;
+        }
+
+        .date {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: $mTextSize;
+  }
+
+  :global .ant-card-actions {
+    border: none;
+
+    li:not(:last-child) {
+      border-inline-end: none;
+      min-width: calc(100% - 80px);
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    li:last-child {
+      min-width: 80px;
+    }
+  }
+}
