@@ -1,22 +1,27 @@
 import { apiSlice } from "../../api/apiSlice"
-import { AuthModesType, AuthResponseType, LoginFormType } from "../../pages/Login/type"
+import { AuthModeType, AuthRequestType, AuthResponseType, LoginFormType } from "../../pages/Login/type"
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAuthModes: builder.query<AuthModesType, string>({
+    getAuthModes: builder.query<AuthModeType[], string>({
       // query: (clientID) => `/authModes/${clientID}`,
-      query: (clientID) => `/`,
+      query: (clientID) => `/authn/strategies`,
     }),
     authentication: builder.query<AuthResponseType, {body: LoginFormType, url: string}>({
       query: (data) => ({
-        url: `${data.url}`,
+        url: `/authn${data.url}`,
         headers: {
           Authorization: `Basic ${btoa(`${data.body.username}:${data.body.password}`)}`
         },
       }),
     }),
-    socialAuthentication: builder.query<AuthResponseType, {url: string}>({
-      query: (data) => `${data.url}`
+    socialAuthentication: builder.query<AuthResponseType, AuthRequestType>({
+      query: (body) => ({
+        url: `/authn${body.url}?name=${body.name}`,
+        headers: {
+          'X-Auth-Code': body.code,
+        }
+      }),
     }),
     // getLicenseState: builder.query({
     //   query: (clientID) => `/license/${clientID}`,
@@ -44,7 +49,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetAuthModesQuery,
   useLazyAuthenticationQuery,
-  useLazySocialAuthenticationQuery,
+  useLazySocialAuthenticationQuery
   // useGetPageContentQuery,
   // useGetLicenseStateQuery,
   // useUpdateLicenseMutation,

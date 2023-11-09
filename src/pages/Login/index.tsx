@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Panel from "../../components/Panel/Panel";
-import { useLazyAuthenticationQuery, useGetAuthModesQuery, useLazySocialAuthenticationQuery } from "../../features/auth/authApiSlice";
-import { AuthState, setUser } from "../../features/auth/authSlice";
+import { useLazyAuthenticationQuery, useGetAuthModesQuery } from "../../features/auth/authApiSlice";
+import { setUser } from "../../features/auth/authSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import LoginForm from "./components/LoginForm/LoginForm";
 import { LoginFormType } from "./type";
@@ -13,22 +12,8 @@ import getClientIdFromPath from "../../utils/getClientIdFromPath";
 import SocialLogin from './components/SocialLogin/SocialLogin';
 
 const Login = () => {
-  /**
-   * Steps
-   * 1. call API to get list of auth modes
-   * 2. render form if basic is present in list
-   * 3. render social buttons for each social login in list
-   * 
-   * Functionalities
-   * - submit the form and buttons to the endpoint read on API
-   *  - save known response to store and localhost
-   * - logout
-   * 
-   */
-
   const clientId = getClientIdFromPath();
   const [authentication, { isLoading: AuhLoading }] = useLazyAuthenticationQuery();
-  const [socialAuthentication] = useLazySocialAuthenticationQuery();
   const {data, isLoading, isError, isFetching} = useGetAuthModesQuery(clientId);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -36,7 +21,7 @@ const Login = () => {
   const messageKey = 'loginMessageKey';
 
   const onBasicSubmit = async (body: LoginFormType) => {
-    const url = data?.find((el) => el.name === "basic")?.path;
+    const url = data?.find((el) => el.kind === "basic")?.path;
 
     if (body.username && body.password && url) {
       try {
@@ -52,28 +37,21 @@ const Login = () => {
     }
   };
 
-  const onSocialLogin = async (url: string) => {
-    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/${url}`;
-  }
-
   const renderPanelContent = () => (
-    data?.map((el) => {
-      switch (el.name) {
+    data?.map((el, i) => {
+      switch (el.kind) {
         case "basic":
-            return <>
+            return <div key={`login_${i}`}>
               <LoginForm onSubmit={onBasicSubmit} isLoading={AuhLoading} />
-              {(data.length > 1) && <Divider plain>OR</Divider> }
-            </>
+              {(data?.length > 1) && <Divider plain>OR</Divider> }
+            </div>
           break;
         
         default:
-          return <SocialLogin methodName={el.name} onClick={onSocialLogin} />
+          return <SocialLogin key={`login_${i}`} method={el} />
           break;
       }
     })
-    
-    
-
   )
 
   return (
@@ -82,12 +60,12 @@ const Login = () => {
       <Panel
         title="Welcome back"
         content={
-          // isError ?
-          // <Result status="error" />
-          // :
-          // isLoading || isFetching ?
-          // <Skeleton />
-          // :
+          isError ?
+          <Result status="error" />
+          :
+          isLoading || isFetching ?
+          <Skeleton />
+          :
           renderPanelContent()
         }
       />

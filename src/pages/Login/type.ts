@@ -43,8 +43,19 @@ export type AuthResponseType = {
   } | null
 }
 
-export type AuthModesType = {
-    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
-    name: string;
-    path: string;
-}[];
+export type AuthModeType = {
+  extensions?: {
+    authURL: string; // social authentication URL
+    clientID: string;
+    redirectURL: string;
+  },
+  name: string;
+  kind: string;
+  path: string; // krateo backend auth URL
+}
+
+export type AuthRequestType = {
+  name: string;
+  code: string;
+  url: string; // krateo backend auth URL
+}

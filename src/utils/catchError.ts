@@ -4,6 +4,10 @@ const catchError = (code?: string): string => {
     case "username_o_password_errati":
       message = 'Utilizza delle credenziali corrette';
       break;
+
+    case "application_data_missing":
+      message = 'Impossibile ricevere i dati dell\'applicazione';
+      break;
   
     default: // errore generico non gestito (es. status 500)
     message = 'Impossibile procedere con l\'operazione';

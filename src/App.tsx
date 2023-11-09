@@ -13,7 +13,7 @@ import { useGetAppDataQuery } from "./features/app/appApiSlice";
 import { Space, Spin, Typography, message } from "antd";
 import catchError from "./utils/catchError";
 import getClientIdFromPath from "./utils/getClientIdFromPath";
-import Auth from "./pages/Auth/Auth";
+import AuthGitHub from "./pages/Auth/AuthGitHub";
 
 function App() {
   const clientId = getClientIdFromPath();
@@ -123,7 +123,7 @@ function App() {
 
   useEffect(() => {
     if (isError) {
-      messageApi.open({key: messageKey, type: 'error', content: catchError()});
+      messageApi.open({key: messageKey, type: 'error', content: catchError('application_data_missing')});
     }
   }, [isError, messageApi]);
 
@@ -149,13 +149,7 @@ function App() {
         },
         {
           path: "/auth/github",
-          element: <Auth />,
-          children: [
-            {
-              index: true,
-              element: <Login />
-            }
-          ]
+          element: <AuthGitHub />,
         },
         {
           path: "/",

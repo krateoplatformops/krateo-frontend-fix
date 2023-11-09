@@ -2,41 +2,49 @@ import { Button } from "antd";
 import styles from './styles.module.scss';
 import { GithubOutlined } from "@ant-design/icons";
 import { ReactElement } from "react";
+import { AuthModeType } from "../../type";
 
-type methodsType = {
+type renderMethodsType = {
   name: string;
   icon: ReactElement;
   label: string;
   className: string;
-  url: string;
+  // url: string;
 }
 
-const methods: methodsType[] = [
+const renderMethodsData: renderMethodsType[] = [
   {
-    name: "github.login",
+    name: "github",
     icon: <GithubOutlined />,
     label: "Sign in with GitHub",
     className: "github",
-    url: "v1/auth/github/login"
+    // url: `https://github.com/login/oauth/authorize?client_id=77fcb37e2373f49fa771&state=${}`
   }
 ]
 
-type SocialLoginType = {
-  methodName: string;
-  onClick: (url: string) => void;
-}
+const SocialLogin = ({method}: {method: AuthModeType}) => {
+  const renderData = renderMethodsData.find((el) => el.name === method.name);
 
-const SocialLogin = ({methodName, onClick}: SocialLoginType) => {
-  const method = methods.find((el) => el.name === methodName);
+  const getRandomString = () => {
+    const rnd = Math.floor(Math.random() * Date.now()).toString(36);
+    localStorage.setItem("KrateoSL", rnd);
+    return rnd;
+  };
+
+  const onSubmit = () => {
+    window.location.href = `${method.extensions?.authURL}?client_id=${method.extensions?.clientID}&state=${getRandomString()}`;
+  }
 
   return (
-    (method) ?
+    (method && renderData) ?
       <Button
-        icon={method.icon}
-        onClick={() => onClick(method.url)}
-        className={styles[method.className]}
+        icon={renderData.icon}
+        onClick={() => onSubmit()}
+        className={styles[renderData.className]}
         size='large'
-      >{method.label}</Button>
+      >
+        {renderData.label}
+      </Button>
     :
      <></>
   )
