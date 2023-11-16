@@ -145,7 +145,7 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
-                    element: "FormGenerator",
+                    element: "ButtonPanelForm",
                     props: {}
                   }],
                 }

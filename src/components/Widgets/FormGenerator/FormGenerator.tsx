@@ -1,4 +1,7 @@
-import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select } from "antd";
+import { useEffect } from "react";
+import { Button, Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Space, message } from "antd";
+import dayjs, { Dayjs } from "dayjs";
+import { usePostContentMutation } from "../../../features/common/commonApiSlice";
 
 type FieldType = {
 	name: string,
@@ -33,8 +36,10 @@ type FieldType = {
 }
 
 const FormGenerator = () => {
-  const data: {title: string, fields: FieldType[] } = {
-		title: "Name and description",
+  const data: {title: string, description: string, endpoint: string, fields: FieldType[] } = {
+		title: "Form Name",
+		description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+		endpoint: "/loremipsum/",
 		fields: [
 			{
 				name: "field1",
@@ -122,28 +127,24 @@ const FormGenerator = () => {
 							label: "lorem ipsum",
 							value: 1,
 						},
-						{
-							label: "lorem ipsum",
-							value: 2,
-						}
 					]
 				}
 			},
 			{
 				name: "field7",
-				type: "checkbox",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-				initialValue: true,
-			},
-			{
-				name: "field8",
 				type: "textArea",
 				label: "lorem ipsum",
 				rules: [],
 				placeholder: "lorem ipsum",
 				initialValue: "",
+			},
+			{
+				name: "field8",
+				type: "checkbox",
+				label: "lorem ipsum",
+				rules: [],
+				placeholder: "",
+				initialValue: true,
 			},
 			{
 				name: "field9",
@@ -160,6 +161,16 @@ const FormGenerator = () => {
 			},
 		]
 	}
+
+	const [postContent, { isLoading }] = usePostContentMutation();
+  const messageKey = 'formGeneratorMessageKey';
+  const [messageApi, contextHolder] = message.useMessage();
+	const [form] = Form.useForm();
+
+	// useEffect(() => {
+  //   if (initialValues)
+  //     form.setFieldsValue(initialValues)
+  // }, [form, initialValues])
 
 	const renderField = (field: FieldType) => {
 		switch (field.type) {
@@ -201,27 +212,64 @@ const FormGenerator = () => {
 		}
 	}
 
-	return (
-		<Form
-			// form={form}
-			layout="vertical"
-			onFinish={() => {}}
-			title={data.title}
-			name="formGenerator"
-			autoComplete="off"
-		>
-			{
-				data.fields.map(field => (
-					<Form.Item
-						label={field.label}
-						name={field.name}
-						rules={field.rules}
-					>
-						{ renderField(field) }
-					</Form.Item>
-				))
+	const onSubmit = (values: object) => {
+		// convert all dayjs date to ISOstring
+		Object.keys(values).forEach(k => {
+			if (dayjs.isDayjs(values[k])) {
+				values[k] = (values[k] as unknown as Dayjs).toISOString()
 			}
-		</Form>
+		});
+		// send data
+		try {
+			postContent({
+				endpoint: data.endpoint,
+				body: values,
+			})
+		} catch (err) {
+      messageApi.open({key: messageKey, type: 'error', content: 'The operation couldn\'t be completed'});
+		}
+	}
+
+	useEffect(() => {
+    if (isLoading) {
+      messageApi.open({key: messageKey, type: 'loading', content: 'Sending data...'});
+    }
+  }, [isLoading, messageApi]);
+
+	return (
+		<>
+			{contextHolder}
+			<Form
+				form={form}
+				layout="vertical"
+				onFinish={onSubmit}
+				title={data.title}
+				name="formGenerator"
+				autoComplete="off"
+			>
+				{
+					data.fields.map(field => (
+						<Form.Item
+							label={field.type !== "checkbox" && field.label}
+							name={field.name}
+							rules={field.required ? [...field.rules, {required: true, message: "Insert a value"}] : field.rules}
+						>
+							{ renderField(field) }
+						</Form.Item>
+					))
+				}
+				<Form.Item>
+					<Space style={{marginTop: '20px', width: '100%', justifyContent: 'end'}}>
+						<Button htmlType="button" onClick={() => form.resetFields()}>
+							Reset
+						</Button>
+						<Button type="primary" htmlType="submit">
+							Submit
+						</Button>
+					</Space>
+				</Form.Item>
+			</Form>
+		</>
 	)
 }
 
