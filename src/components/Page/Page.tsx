@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import widgets from "../Widgets/index";
-import { Col, Row, Tabs, Tag } from "antd";
+import { Col, Row, Space, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 
 import styles from "./styles.module.scss";
@@ -14,7 +14,60 @@ const Page = ({clientId, url}: PageType) => {
 
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
+    // template page
+    return {
+      component: "Row",
+      content: [
+        {
+          component: "Col",
+          props: {flex: 1, width: '100%'},
+          content: [
+            {
+              component: "Toolbar",
+              content: []
+            },
+            {
+              component: "Widget",
+              element: "DataList",
+              props: {
+                endpoint: "/loremipsum", // per ricevere la lista aggiornata
+                data: [
+                  {
+                    element: "CardTemplate",
+                    props: {
+                      icon: "",
+                      color: "blue",
+                      title: "Lorem Ipsum dolor sit",
+                      status: "",
+                      date: "",
+                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                      tags: [],
+                      permissions: ["delete", "view"]
+                    }
+                  },
+                  {
+                    element: "CardTemplate",
+                    props: {
+                      icon: "",
+                      color: "red",
+                      title: "Lorem Ipsum dolor sit",
+                      status: "archived",
+                      date: "Sep 15th 2023 08:15:43",
+                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                      tags: ["Lorem ipsum #1", "Lorem ipsum #2"],
+                      permissions: ["view"]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+        }
+      ]
+    }
 
+    /*
+    // dashboard page
     return {
       component: "Row",
       content: [
@@ -121,7 +174,7 @@ const Page = ({clientId, url}: PageType) => {
                       status: "archived",
                       date: "Sep 15th 2023 08:15:43",
                       content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
-                      tags: [<Tag>Lorem ipsum</Tag>, <Tag>Lorem ipsum</Tag>],
+                      tags: ["Lorem ipsum #1", "Lorem ipsum #2"],
                       onDelete: () => {}
                     }
                   }],
@@ -155,6 +208,7 @@ const Page = ({clientId, url}: PageType) => {
         }
       ]
     }
+    */
   }
 
   const getContent = useCallback((data, i): ReactElement => {
@@ -172,6 +226,9 @@ const Page = ({clientId, url}: PageType) => {
         
         case "TabPane":
           return <TabPane key={`tabpane_${index}`} {...data.props} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
+        
+        case "Toolbar":
+          return <Space style={{width: '100%', justifyContent: 'end'}}></Space>
         
         case "Widget": {
           const Component = widgets[data.element];

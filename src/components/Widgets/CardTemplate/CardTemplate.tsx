@@ -1,5 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Card, Avatar, Button, Space, Typography } from "antd";
+import { Card, Avatar, Button, Space, Typography, Tag } from "antd";
 import styles from "./styles.module.scss";
 
 const CardTemplate = ({icon, color, title, status, date, content, tags, onDelete}) => {
@@ -19,7 +19,7 @@ const CardTemplate = ({icon, color, title, status, date, content, tags, onDelete
         </Space>
       }
       actions={[
-        <Space wrap key='1'>{tags}</Space>,
+        <Space wrap key='1'>{tags.map((tag) => <Tag>{tag}</Tag>)}</Space>,
         <Button key='2' onClick={onDelete} icon={<DeleteOutlined />} type="text" />
       ]}
     >
