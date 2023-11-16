@@ -145,8 +145,8 @@ const Page = ({clientId, url}: PageType) => {
                   props: {xs:24, md:8},
                   content: [{
                     component: "Widget",
-                    element: "Widget2",
-                    props: { text: "This is a widget at 33%"}
+                    element: "FormGenerator",
+                    props: {}
                   }],
                 }
               ],

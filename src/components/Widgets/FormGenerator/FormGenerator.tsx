@@ -1,8 +1,8 @@
-import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Upload } from "antd";
+import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select } from "antd";
 
 type FieldType = {
 	name: string,
-	type: "text" | "number" | "select" | "radioGroup" | "checkboxGroup" | "checkbox" | "textArea" | "datetime" | "file",
+	type: "text" | "number" | "select" | "radioGroup" | "checkboxGroup" | "checkbox" | "textArea" | "datetime",
 	label: string,
 	required?: boolean,
 	rules: {
@@ -37,14 +37,11 @@ const FormGenerator = () => {
 		title: "Name and description",
 		fields: [
 			{
-				name: "lorem",
+				name: "field1",
 				type: "text",
 				label: "lorem ipsum",
+				required: true,
 				rules: [
-					{
-						pattern: /\S/,
-						message: "This is a required field"
-					},
 					{
 						pattern: /^[A-Za-z]$/,
 						message: "Insert a valid value"
@@ -53,7 +50,7 @@ const FormGenerator = () => {
 				placeholder: "lorem ipsum",
 			},
 			{
-				name: "lorem",
+				name: "field2",
 				type: "number",
 				label: "lorem ipsum",
 				rules: [],
@@ -63,14 +60,14 @@ const FormGenerator = () => {
 				}
 			},
 			{
-				name: "lorem",
+				name: "field3",
 				type: "number",
 				label: "lorem ipsum",
 				rules: [],
 				placeholder: "",
 			},
 			{
-				name: "lorem",
+				name: "field4",
 				type: "select",
 				label: "lorem ipsum",
 				rules: [],
@@ -89,7 +86,7 @@ const FormGenerator = () => {
 				}
 			},
 			{
-				name: "lorem",
+				name: "field5",
 				type: "radioGroup",
 				label: "lorem ipsum",
 				rules: [],
@@ -109,7 +106,7 @@ const FormGenerator = () => {
 				}
 			},
 			{
-				name: "lorem",
+				name: "field6",
 				type: "checkboxGroup",
 				label: "lorem ipsum",
 				rules: [],
@@ -133,7 +130,7 @@ const FormGenerator = () => {
 				}
 			},
 			{
-				name: "lorem",
+				name: "field7",
 				type: "checkbox",
 				label: "lorem ipsum",
 				rules: [],
@@ -141,7 +138,7 @@ const FormGenerator = () => {
 				initialValue: true,
 			},
 			{
-				name: "lorem",
+				name: "field8",
 				type: "textArea",
 				label: "lorem ipsum",
 				rules: [],
@@ -149,35 +146,21 @@ const FormGenerator = () => {
 				initialValue: "",
 			},
 			{
-				name: "lorem",
+				name: "field9",
 				type: "datetime",
 				label: "lorem ipsum",
 				rules: [],
 				placeholder: "lorem ipsum",
 				initialValue: "2023-10-31T10:37Z",
 				extra: {
-					format: "DD MMM YYYY HH:mm",
+					format: "DD MMM YYYY",
 					minDate: "2023-06-01T00:00Z",
 					maxDate: "2024-12-01T00:00Z",
 				}
 			},
-			{
-				name: "lorem",
-				type: "file",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "lorem ipsum",
-				initialValue: "2023-10-31T10:37Z",
-				extra: {
-					accepted: ".doc,.pdf,.png",
-					multiple: true,
-					maxSize: 1048576,
-					maxCount: 3
-				}
-			}
 		]
 	}
-// "radioGroup" | "checkboxGroup" | "checkbox" | "textArea" | "datetime" | "file"
+
 	const renderField = (field: FieldType) => {
 		switch (field.type) {
 			case "text":
@@ -185,7 +168,7 @@ const FormGenerator = () => {
 				break;
 		
 			case "number":
-				return <InputNumber placeholder={field.placeholder} />
+				return <InputNumber addonBefore={field.extra?.addonBefore} placeholder={field.placeholder} style={{width: '100%'}} />
 				break;
 
 			case "select":
@@ -193,10 +176,16 @@ const FormGenerator = () => {
 				break;
 
 			case "checkbox":
-				return <Checkbox />
+				return <Checkbox>{field.label}</Checkbox>
 
 			case "datetime":
-				return <DatePicker format={field.extra?.format} placeholder={field.placeholder} />
+				return	<DatePicker
+									allowClear={true}
+									changeOnBlur={true}
+									format={field.extra?.format}
+									placeholder={field.placeholder}
+									style={{width: '100%'}}
+								/>
 
 			case "textArea":
 				return <Input.TextArea rows={3} placeholder={field.placeholder} />
@@ -207,9 +196,6 @@ const FormGenerator = () => {
 			case "radioGroup":
 				return <Radio.Group>{field.extra?.options?.map(el => <Radio value={el.value}>{el.label}</Radio>)}</Radio.Group>
 
-			case "file":
-				return <Upload />
-
 			default:
 				break;
 		}
@@ -217,9 +203,12 @@ const FormGenerator = () => {
 
 	return (
 		<Form
+			// form={form}
 			layout="vertical"
 			onFinish={() => {}}
 			title={data.title}
+			name="formGenerator"
+			autoComplete="off"
 		>
 			{
 				data.fields.map(field => (
@@ -228,7 +217,7 @@ const FormGenerator = () => {
 						name={field.name}
 						rules={field.rules}
 					>
-						{/* { renderField(field) } */}
+						{ renderField(field) }
 					</Form.Item>
 				))
 			}

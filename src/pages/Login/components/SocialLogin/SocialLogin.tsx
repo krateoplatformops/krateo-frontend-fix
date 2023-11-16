@@ -37,14 +37,16 @@ const SocialLogin = ({method}: {method: AuthModeType}) => {
 
   return (
     (method && renderData) ?
-      <Button
-        icon={renderData.icon}
-        onClick={() => onSubmit()}
-        className={styles[renderData.className]}
-        size='large'
-      >
-        {renderData.label}
-      </Button>
+      <div className={styles.socialLogin}>
+        <Button
+          icon={renderData.icon}
+          onClick={() => onSubmit()}
+          className={styles[renderData.className]}
+          size='large'
+        >
+          {renderData.label}
+        </Button>
+      </div>
     :
      <></>
   )

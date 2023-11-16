@@ -5,6 +5,7 @@ import ChartMultipleBars from "./ChartMultipleBars/ChartMultipleBars";
 import CardTemplate from "./CardTemplate/CardTemplate";
 import Widget1 from "./Widget1/Widget1";
 import Widget2 from "./Widget2/Widget2";
+import FormGenerator from "./FormGenerator/FormGenerator";
 
 const widgets = {
   "ChartPie": ChartPie,
@@ -12,6 +13,7 @@ const widgets = {
   "ChartBars": ChartBars,
   "ChartMultipleBars": ChartMultipleBars,
   "CardTemplate": CardTemplate,
+  "FormGenerator": FormGenerator,
   "Widget1": Widget1,
   "Widget2": Widget2,
 }
