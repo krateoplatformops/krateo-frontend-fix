@@ -1,11 +1,13 @@
 import { apiSlice } from "../../api/apiSlice"
 import { AuthModeType, AuthRequestType, AuthResponseType, LoginFormType } from "../../pages/Login/type"
 
+const baseAuthUrl = import.meta.env.VITE_AUTHN_API_BASE_URL;
+
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAuthModes: builder.query<AuthModeType[], string>({
       // query: (clientID) => `/authModes/${clientID}`,
-      query: (clientID) => `/authn/strategies`,
+      query: (clientID) => `${baseAuthUrl}/strategies`,
     }),
     authentication: builder.query<AuthResponseType, {body: LoginFormType, url: string}>({
       query: (data) => ({
@@ -17,7 +19,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     socialAuthentication: builder.query<AuthResponseType, AuthRequestType>({
       query: (body) => ({
-        url: `/authn${body.url}?name=${body.name}`,
+        url: `${baseAuthUrl}/authn${body.url}?name=${body.name}`,
         headers: {
           'X-Auth-Code': body.code,
         }

@@ -14,6 +14,9 @@ import { Space, Spin, Typography, message } from "antd";
 import catchError from "./utils/catchError";
 import getClientIdFromPath from "./utils/getClientIdFromPath";
 import AuthGitHub from "./pages/Auth/AuthGitHub";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 function App() {
   const clientId = getClientIdFromPath();
@@ -123,7 +126,7 @@ function App() {
 
   useEffect(() => {
     if (isError) {
-      messageApi.open({key: messageKey, type: 'error', content: catchError('application_data_missing')});
+      // TEMPORARY DISABLED: messageApi.open({key: messageKey, type: 'error', content: catchError('application_data_missing')});
     }
   }, [isError, messageApi]);
 

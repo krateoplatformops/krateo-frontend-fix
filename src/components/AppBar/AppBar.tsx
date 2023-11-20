@@ -4,7 +4,7 @@ import UserLogged from '../UserLogged/UserLogged';
 import styles from './styles.module.scss';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import { useSelector } from 'react-redux';
-import { logout, selectLoggedUser } from '../../features/auth/authSlice';
+import { logout, selectLoggedUser, setUser } from '../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
 import { useEffect } from 'react';
@@ -20,10 +20,13 @@ const AppBar = () => {
   }
 
   useEffect(() => {
-    if (user === null && !userLS.accessToken) {
+    if (user === null && !userLS.data) {
       navigate("/login");
     }
-  }, [navigate, user, userLS.accessToken]);
+    if (user === null && userLS.data) {
+      dispatch(setUser(userLS));
+    }
+  }, [navigate, user, userLS.data]);
 
   return (
     <section className={styles.appBar}>

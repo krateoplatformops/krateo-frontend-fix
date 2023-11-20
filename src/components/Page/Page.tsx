@@ -2,14 +2,14 @@ import { ReactElement, useCallback, useEffect, useState } from "react";
 import widgets from "../Widgets/index";
 import { Col, Row, Space, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
-
-import styles from "./styles.module.scss";
 import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
+import styles from "./styles.module.scss";
+
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
-  const {data, isLoading, isError} = useGetPageContentQuery({clientId, url});
+  const {data, isLoading, isError, isSuccess} = useGetPageContentQuery({clientId, url});
 
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
@@ -34,8 +34,8 @@ const Page = ({clientId, url}: PageType) => {
                   {
                     element: "CardTemplate",
                     props: {
-                      icon: "",
-                      color: "blue",
+                      icon: "server",
+                      color: "#11B2E2",
                       title: "Lorem Ipsum dolor sit",
                       status: "",
                       date: "",
@@ -54,8 +54,8 @@ const Page = ({clientId, url}: PageType) => {
                   {
                     element: "CardTemplate",
                     props: {
-                      icon: "",
-                      color: "red",
+                      icon: "fa-code-branch",
+                      color: "#F84C4C",
                       title: "Lorem Ipsum dolor sit",
                       status: "archived",
                       date: "Sep 15th 2023 08:15:43",
@@ -262,6 +262,7 @@ const Page = ({clientId, url}: PageType) => {
     }
   }, []);
 
+  // mock data
   useEffect(() => {
     const createPage = (data) => {
       setContentPage(getContent(data, 1)); // root
@@ -270,6 +271,17 @@ const Page = ({clientId, url}: PageType) => {
     const response = fetchPage(clientId, url);
     createPage(response);
   }, [clientId, getContent, url]);
+
+  // api data
+  // useEffect(() => {
+  //   const createPage = (data) => {
+  //     setContentPage(getContent(data, 1)); // root
+  //   }
+
+  //   if (data && isSuccess) {
+  //     createPage(data);
+  //   }
+  // }, [data, getContent, isSuccess]);
 
   return (
     <section className={styles.page}>

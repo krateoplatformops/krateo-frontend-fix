@@ -1,6 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Card, Avatar, Button, Space, Typography, Tag } from "antd";
 import styles from "./styles.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CardTemplate = ({icon, color, title, status, date, content, tags, actions}) => {
   return (
@@ -8,7 +9,7 @@ const CardTemplate = ({icon, color, title, status, date, content, tags, actions}
       className={styles.card}
       title={
         <Space size="large" className={styles.header}>
-          <Avatar style={{ backgroundColor: color }} size={64} icon={icon} />
+          <Avatar style={{ backgroundColor: color }} size={64} icon={<FontAwesomeIcon icon={icon} />} />
           <div className={styles.details}>
             <Typography.Title className={styles.title} level={2}>{title}</Typography.Title>
             <Space className={styles.subTitle}>
