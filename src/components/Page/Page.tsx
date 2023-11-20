@@ -6,7 +6,6 @@ import TabPane from "antd/es/tabs/TabPane";
 import styles from "./styles.module.scss";
 import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
-import { ApartmentOutlined } from "@ant-design/icons";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
@@ -42,7 +41,14 @@ const Page = ({clientId, url}: PageType) => {
                       date: "",
                       content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
                       tags: [],
-                      permissions: ["delete", "view"]
+                      actions: [
+                        {
+                          name: "remove",
+                          enabled: true,
+                          path: "/lorem-ipsum",
+                          verb: "DELETE"
+                        }
+                      ]
                     }
                   },
                   {
@@ -55,7 +61,12 @@ const Page = ({clientId, url}: PageType) => {
                       date: "Sep 15th 2023 08:15:43",
                       content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
                       tags: ["Lorem ipsum #1", "Lorem ipsum #2"],
-                      permissions: ["view"]
+                      actions: [
+                        {
+                          name: "remove",
+                          enabled: false,
+                        }
+                      ]
                     }
                   }
                 ]
