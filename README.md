@@ -9,19 +9,15 @@ npm install
 ```
 
 ## Start in local
-Edit API endpoint from _.env.development_ file
-
 Launch application
 ```sh
-npm run dev
+$ export "VITE_GATEWAY_API_BASE_URL=https://api.krateoplatformops.io" && export "VITE_AUTHN_API_BASE_URL=https://api.krateoplatformops.io/authn" &&  npm run dev
 ```
 
 ## Deploying
-Edit API endpoint from _.env.production_ file
-
 Build application 
 ```sh
-npm run build
+$ export "VITE_GATEWAY_API_BASE_URL=https://api.krateoplatformops.io" && export "VITE_AUTHN_API_BASE_URL=https://api.krateoplatformops.io/authn" &&  npm run build
 ```
 
 Copy content of _/build_ folder in your web server

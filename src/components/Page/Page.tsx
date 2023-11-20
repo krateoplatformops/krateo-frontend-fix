@@ -285,6 +285,8 @@ const Page = ({clientId, url}: PageType) => {
 
   return (
     <section className={styles.page}>
+      ENV: {import.meta.env.VITE_GATEWAY_API_BASE_URL}
+      AUTHN: {import.meta.env.VITE_AUTHN_API_BASE_URL}
       { contentPage }
     </section>
   );

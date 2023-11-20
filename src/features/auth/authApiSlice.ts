@@ -19,7 +19,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     socialAuthentication: builder.query<AuthResponseType, AuthRequestType>({
       query: (body) => ({
-        url: `${baseAuthUrl}/authn${body.url}?name=${body.name}`,
+        url: `${baseAuthUrl}/${body.url}?name=${body.name}`,
         headers: {
           'X-Auth-Code': body.code,
         }
