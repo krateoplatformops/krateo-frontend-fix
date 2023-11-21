@@ -38,6 +38,9 @@ const Login = () => {
   };
 
   const renderPanelContent = () => (
+    data?.length === 0 ?
+      <Result status="warning" title="There are no authentication methods" subTitle="Please create some authentication methods and try again" />
+    :
     data?.map((el, i) => {
       switch (el.kind) {
         case "basic":
@@ -61,9 +64,9 @@ const Login = () => {
         title="Welcome back"
         content={
           isError ?
-          <Result status="error" />
+          <Result status="error" title="Ops! Something didn't work" subTitle="Unable to retrieve authentication methods" />
           :
-          isLoading || isFetching ?
+          (isLoading || isFetching) ?
           <Skeleton />
           :
           renderPanelContent()

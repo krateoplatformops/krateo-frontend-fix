@@ -18,7 +18,6 @@ const renderMethodsData: renderMethodsType[] = [
     icon: <GithubOutlined />,
     label: "Sign in with GitHub",
     className: "github",
-    // url: `https://github.com/login/oauth/authorize?client_id=77fcb37e2373f49fa771&state=${}`
   }
 ]
 

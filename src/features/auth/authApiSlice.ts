@@ -6,12 +6,16 @@ const baseAuthUrl = import.meta.env.VITE_AUTHN_API_BASE_URL;
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAuthModes: builder.query<AuthModeType[], string>({
-      // query: (clientID) => `${baseAuthUrl}/strategies`,
-      query: (clientID) => "https://6fbc3b60-3ed8-4d6d-9174-c21aa78f05ed-10-244-5-163-30007.spch.r.killercoda.com/strategies",
+      query: () => ({
+        url: `${baseAuthUrl}/strategies`,
+        credentials: "omit",
+        headers: {},
+      }),
     }),
     authentication: builder.query<AuthResponseType, {body: LoginFormType, url: string}>({
       query: (data) => ({
-        url: `${baseAuthUrl}/${data.url}`,
+        url: `${baseAuthUrl}${data.url}`,
+        credentials: "omit",
         headers: {
           Authorization: `Basic ${btoa(`${data.body.username}:${data.body.password}`)}`
         },
@@ -19,7 +23,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     socialAuthentication: builder.query<AuthResponseType, AuthRequestType>({
       query: (body) => ({
-        url: `${baseAuthUrl}/${body.url}?name=${body.name}`,
+        url: `${baseAuthUrl}${body.url}?name=${body.name}`,
+        credentials: "omit",
         headers: {
           'X-Auth-Code': body.code,
         }

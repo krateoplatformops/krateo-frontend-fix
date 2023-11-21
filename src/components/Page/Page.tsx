@@ -35,7 +35,7 @@ const Page = ({clientId, url}: PageType) => {
                     element: "CardTemplate",
                     props: {
                       icon: "server",
-                      color: "#11B2E2",
+                      color: "blue",
                       title: "Lorem Ipsum dolor sit",
                       status: "",
                       date: "",
@@ -55,7 +55,7 @@ const Page = ({clientId, url}: PageType) => {
                     element: "CardTemplate",
                     props: {
                       icon: "fa-code-branch",
-                      color: "#F84C4C",
+                      color: "red",
                       title: "Lorem Ipsum dolor sit",
                       status: "archived",
                       date: "Sep 15th 2023 08:15:43",
