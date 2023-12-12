@@ -31,7 +31,7 @@ const AuthGitHub = () => {
     }
     
     if (!isErrorAuth && isSuccessModes) {
-      const methodData = data?.find((el) => el.name === "github")
+      const methodData = data?.find((el) => (el.kind === "github") && el.extensions?.redirectURL && (el.extensions.redirectURL.indexOf(window.location.protocol) > -1));
       if (state === localStorage.getItem("KrateoSL") && code && methodData) {
         socialAuth(code, methodData);
       }
