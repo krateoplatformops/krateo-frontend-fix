@@ -45,8 +45,7 @@ export type AuthResponseType = {
 
 export type AuthModeType = {
   extensions?: {
-    authURL: string; // social authentication URL
-    clientID: string;
+    authCodeURL: string; // social authentication URL
     redirectURL: string;
   },
   name: string;

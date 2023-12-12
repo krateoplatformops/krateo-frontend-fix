@@ -31,7 +31,8 @@ const SocialLogin = ({method}: {method: AuthModeType}) => {
   };
 
   const onSubmit = () => {
-    window.location.href = `${method.extensions?.authURL}?client_id=${method.extensions?.clientID}&state=${getRandomString()}`;
+    const url = method.extensions?.authCodeURL.substring(0, method.extensions?.authCodeURL.indexOf("&state="))
+    window.location.href = `${url}&state=${getRandomString()}`;
   }
 
   return (
