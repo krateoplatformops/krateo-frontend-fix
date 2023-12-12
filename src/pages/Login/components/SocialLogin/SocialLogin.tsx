@@ -22,7 +22,7 @@ const renderMethodsData: renderMethodsType[] = [
 ]
 
 const SocialLogin = ({method}: {method: AuthModeType}) => {
-  const renderData = renderMethodsData.find((el) => el.name === method.name);
+  const renderData = renderMethodsData.find((el) => (el.name === method.kind) && method.extensions?.redirectURL && (method.extensions.redirectURL.indexOf(window.location.protocol) > -1));
 
   const getRandomString = () => {
     const rnd = Math.floor(Math.random() * Date.now()).toString(36);
