@@ -102,150 +102,257 @@ const Page = ({clientId, url}: PageType) => {
 
     // dashboard page
     return {
-      component: "Row",
+      component: "Tabs",
       content: [
         {
-          component: "Col",
-          props: 5,
+          component: "TabPane",
+          props: {
+            label: "Charts"
+          },
           content: [
             {
               component: "Row",
               content: [
                 {
                   component: "Col",
-                  props:  2,
-                  content: [{
-                    component: "Widget",
-                    element: "ChartPie",
-                    props: {
-                      title: "templates",
-                      tooltip: "this is a beautiful pie chart",
-                      label: "used",
-                      value: 428,
-                      total: 695,
-                      status: "default"
+                  props: 5,
+                  content: [
+                    {
+                      component: "Row",
+                      content: [
+                        {
+                          component: "Col",
+                          props:  2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartPie",
+                            props: {
+                              title: "templates",
+                              tooltip: "this is a beautiful pie chart",
+                              label: "used",
+                              value: 428,
+                              total: 695,
+                              status: "default"
+                            }
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props:  4,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartLine",
+                            props: {
+                              title: "trend",
+                              tooltip: "this is a beautiful line chart",
+                            }
+                          }],
+                        }
+                      ],
+                    },
+                    {
+                      component: "Row",
+                      content: [
+                        {
+                          component: "Col",
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartBars",
+                            props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartBars",
+                            props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartMultipleBars",
+                            props: { title: "System Status", tooltip: "Lorem ipsum dolor sit amet", data: []}
+                          }],
+                        }
+                      ],
+                    },
+                    {
+                      component: "Row",
+                      content: [
+                        {
+                          component: "Col",
+                          props: 3,
+                          content: [{
+                            component: "Widget",
+                            element: "CardTemplate",
+                            props: {
+                              icon: "server",
+                              color: "blue",
+                              title: "Lorem Ipsum dolor sit",
+                              status: "",
+                              date: "",
+                              content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                              tags: "",
+                              actions:[
+                                  {
+                                    "name":"remove",
+                                    "enabled":false
+                                  }
+                              ]
+                            }
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props: 3,
+                          content: [{
+                            component: "Widget",
+                            element: "CardTemplate",
+                            props: {
+                              icon: "server",
+                              color: "blue",
+                              title: "Lorem Ipsum dolor sit",
+                              status: "archived",
+                              date: "Sep 15th 2023 08:15:43",
+                              content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
+                              tags: "Lorem ipsum #1, Lorem ipsum #2",
+                              actions:[
+                                  {
+                                    "name":"remove",
+                                    "enabled":false
+                                  }
+                              ]
+                            }
+                          }],
+                        },
+                      ],
+                    },
+                    {
+                      component: "Row",
+                      content: [
+                        {
+                          component: "Col",
+                          props: 4,
+                          content: [{
+                            component: "Widget",
+                            element: "Widget1",
+                            props: { text: "This is a widget at 66%"}
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ButtonPanelForm",
+                            props: {}
+                          }],
+                        }
+                      ],
                     }
-                  }],
-                },
-                {
-                  component: "Col",
-                  props:  4,
-                  content: [{
-                    component: "Widget",
-                    element: "ChartLine",
-                    props: {
-                      title: "trend",
-                      tooltip: "this is a beautiful line chart",
-                    }
-                  }],
+                  ]
                 }
-              ],
-            },
+              ]
+            }
+          ]
+        },
+        {
+          component: "TabPane",
+          props: {
+            label: "Data"
+          },
+          content: [
             {
-              component: "Row",
-              content: [
+              "component":"Row",
+              "content":[
                 {
-                  component: "Col",
-                  props: 2,
-                  content: [{
-                    component: "Widget",
-                    element: "ChartBars",
-                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                  }],
-                },
-                {
-                  component: "Col",
-                  props: 2,
-                  content: [{
-                    component: "Widget",
-                    element: "ChartBars",
-                    props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                  }],
-                },
-                {
-                  component: "Col",
-                  props: 2,
-                  content: [{
-                    component: "Widget",
-                    element: "ChartMultipleBars",
-                    props: { title: "System Status", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                  }],
+                  "component":"Col",
+                  "props":{
+                      "flex":1,
+                      "width":"100%"
+                  },
+                  "content":[
+                      {
+                        "component":"Toolbar",
+                        "content":[
+                        ]
+                      },
+                      {
+                        "component":"Widget",
+                        "element":"DataList",
+                        "props":{
+                            "endpoint":"/loremipsum",
+                            "data":[
+                              {
+                                  "element":"CardTemplate",
+                                  "props":{
+                                    "icon":"server",
+                                    "color":"blue",
+                                    "title":"Lorem Ipsum dolor sit",
+                                    "status":"",
+                                    "date":"",
+                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    "tags":"",
+                                    "actions":[
+                                        {
+                                          "name":"remove",
+                                          "enabled":true,
+                                          "path":"/lorem-ipsum",
+                                          "verb":"DELETE"
+                                        }
+                                    ]
+                                  }
+                              },
+                              {
+                                  "element":"CardTemplate",
+                                  "props":{
+                                    "icon":"fa-code-branch",
+                                    "color":"red",
+                                    "title":"Lorem Ipsum dolor sit",
+                                    "status":"archived",
+                                    "date":"Sep 15th 2023 08:15:43",
+                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    "tags":"Lorem ipsum #1,Lorem ipsum #2",
+                                    "actions":[
+                                        {
+                                          "name":"remove",
+                                          "enabled":false
+                                        }
+                                    ]
+                                  }
+                              },
+                              {
+                                "element":"CardTemplate",
+                                "props":{
+                                    "icon":"server",
+                                    "color":"blue",
+                                    "title":"Lorem Ipsum dolor sit",
+                                    "status":"",
+                                    "date":"",
+                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    "tags":"",
+                                    "actions":[
+                                      {
+                                          "name":"remove",
+                                          "enabled":true,
+                                          "path":"/lorem-ipsum",
+                                          "verb":"DELETE"
+                                      }
+                                    ]
+                                }
+                              },
+                            ]
+                        }
+                      }
+                  ]
                 }
-              ],
-            },
-            {
-              component: "Row",
-              content: [
-                {
-                  component: "Col",
-                  props: 3,
-                  content: [{
-                    component: "Widget",
-                    element: "CardTemplate",
-                    props: {
-                      icon: "server",
-                      color: "blue",
-                      title: "Lorem Ipsum dolor sit",
-                      status: "",
-                      date: "",
-                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
-                      tags: "",
-                      actions:[
-                          {
-                            "name":"remove",
-                            "enabled":false
-                          }
-                      ]
-                    }
-                  }],
-                },
-                {
-                  component: "Col",
-                  props: 3,
-                  content: [{
-                    component: "Widget",
-                    element: "CardTemplate",
-                    props: {
-                      icon: "server",
-                      color: "blue",
-                      title: "Lorem Ipsum dolor sit",
-                      status: "archived",
-                      date: "Sep 15th 2023 08:15:43",
-                      content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
-                      tags: "Lorem ipsum #1, Lorem ipsum #2",
-                      actions:[
-                          {
-                            "name":"remove",
-                            "enabled":false
-                          }
-                      ]
-                    }
-                  }],
-                },
-              ],
-            },
-            {
-              component: "Row",
-              content: [
-                {
-                  component: "Col",
-                  props: 4,
-                  content: [{
-                    component: "Widget",
-                    element: "Widget1",
-                    props: { text: "This is a widget at 66%"}
-                  }],
-                },
-                {
-                  component: "Col",
-                  props: 2,
-                  content: [{
-                    component: "Widget",
-                    element: "ButtonPanelForm",
-                    props: {}
-                  }],
-                }
-              ],
+              ]
             }
           ]
         }
@@ -286,7 +393,7 @@ const Page = ({clientId, url}: PageType) => {
           return <Tabs key={`tabs_${index}`} {...data.props} className={styles.tabs}>{ getContent(data.content, index+1) }</Tabs>
         
         case "TabPane":
-          return <TabPane key={`tabpane_${index}`} {...data.props} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
+          return <TabPane key={`tabpane_${index}`} tab={data.props.label} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
         
         case "Toolbar":
           return <Space style={{width: '100%', justifyContent: 'end'}}></Space>
