@@ -5,6 +5,7 @@ import TabPane from "antd/es/tabs/TabPane";
 import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
 import styles from "./styles.module.scss";
+import Toolbar from "../Toolbar/Toolbar";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
@@ -12,93 +13,6 @@ const Page = ({clientId, url}: PageType) => {
 
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
-    // template page
-    /*return {
-      "component":"Row",
-      "content":[
-         {
-            "component":"Col",
-            "props":{
-               "flex":1,
-               "width":"100%"
-            },
-            "content":[
-               {
-                  "component":"Toolbar",
-                  "content":[
-                  ]
-               },
-               {
-                  "component":"Widget",
-                  "element":"DataList",
-                  "props":{
-                     "endpoint":"/loremipsum",
-                     "data":[
-                        {
-                           "element":"CardTemplate",
-                           "props":{
-                              "icon":"server",
-                              "color":"blue",
-                              "title":"Lorem Ipsum dolor sit",
-                              "status":"",
-                              "date":"",
-                              "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                              "tags":"",
-                              "actions":[
-                                 {
-                                    "name":"remove",
-                                    "enabled":true,
-                                    "path":"/lorem-ipsum",
-                                    "verb":"DELETE"
-                                 }
-                              ]
-                           }
-                        },
-                        {
-                           "element":"CardTemplate",
-                           "props":{
-                              "icon":"fa-code-branch",
-                              "color":"red",
-                              "title":"Lorem Ipsum dolor sit",
-                              "status":"archived",
-                              "date":"Sep 15th 2023 08:15:43",
-                              "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                              "tags":"Lorem ipsum #1,Lorem ipsum #2",
-                              "actions":[
-                                 {
-                                    "name":"remove",
-                                    "enabled":false
-                                 }
-                              ]
-                           }
-                        },
-                        {
-                          "element":"CardTemplate",
-                          "props":{
-                             "icon":"server",
-                             "color":"blue",
-                             "title":"Lorem Ipsum dolor sit",
-                             "status":"",
-                             "date":"",
-                             "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                             "tags":"",
-                             "actions":[
-                                {
-                                   "name":"remove",
-                                   "enabled":true,
-                                   "path":"/lorem-ipsum",
-                                   "verb":"DELETE"
-                                }
-                             ]
-                          }
-                       },
-                     ]
-                  }
-               }
-            ]
-         }
-      ]
-   }*/
 
     // dashboard page
     return {
@@ -201,8 +115,8 @@ const Page = ({clientId, url}: PageType) => {
                               tags: "",
                               actions:[
                                   {
-                                    "name":"remove",
-                                    "enabled":false
+                                    name:"remove",
+                                    enabled:false
                                   }
                               ]
                             }
@@ -224,8 +138,8 @@ const Page = ({clientId, url}: PageType) => {
                               tags: "Lorem ipsum #1, Lorem ipsum #2",
                               actions:[
                                   {
-                                    "name":"remove",
-                                    "enabled":false
+                                    name:"remove",
+                                    enabled:false
                                   }
                               ]
                             }
@@ -238,22 +152,13 @@ const Page = ({clientId, url}: PageType) => {
                       content: [
                         {
                           component: "Col",
-                          props: 4,
+                          props: 5,
                           content: [{
                             component: "Widget",
                             element: "Widget1",
                             props: { text: "This is a widget at 66%"}
                           }],
                         },
-                        {
-                          component: "Col",
-                          props: 2,
-                          content: [{
-                            component: "Widget",
-                            element: "ButtonPanelForm",
-                            props: {}
-                          }],
-                        }
                       ],
                     }
                   ]
@@ -269,80 +174,117 @@ const Page = ({clientId, url}: PageType) => {
           },
           content: [
             {
-              "component":"Row",
-              "content":[
+              component:"Row",
+              content:[
                 {
-                  "component":"Col",
-                  "props":{
-                      "flex":1,
-                      "width":"100%"
-                  },
-                  "content":[
+                  component:"Col",
+                  props: 5,
+                  content:[
                       {
-                        "component":"Toolbar",
-                        "content":[
+                        component:"Toolbar",
+                        content:[
+                          {
+                            component: "Widget",
+                            element: "ButtonPanel",
+                            props: {
+                              button: {
+                                label: "Filters",
+                                icon: "filter",
+                                badge: "3",
+                              },
+                              panel: {
+                                title: "Filters",
+                                description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+                                size: "default",
+                                content: {
+                                  element: "FormGenerator",
+                                  props: {} // pass the data to render fields
+                                }
+                              }
+                            }
+                          },
+                          {
+                            component: "Widget",
+                            element: "ButtonPanel",
+                            props: {
+                              button: {
+                                label: "New Template",
+                                icon: "circle-plus",
+                                type: "primary"
+                              },
+                              panel: {
+                                title: "New Template",
+                                description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+                                size: "default",
+                                content: {
+                                  element: "FormGenerator",
+                                  props: {} // pass the data to render fields
+                                }
+                              }
+                            }
+                          }
                         ]
                       },
                       {
-                        "component":"Widget",
-                        "element":"DataList",
-                        "props":{
-                            "endpoint":"/loremipsum",
-                            "data":[
+                        component:"Widget",
+                        element:"DataList",
+                        props:{
+                            endpoint:"/loremipsum",
+                            data:[
                               {
-                                  "element":"CardTemplate",
-                                  "props":{
-                                    "icon":"server",
-                                    "color":"blue",
-                                    "title":"Lorem Ipsum dolor sit",
-                                    "status":"",
-                                    "date":"",
-                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                                    "tags":"",
-                                    "actions":[
+                                  element:"CardTemplate",
+                                  props:{
+                                    icon:"server",
+                                    color:"blue",
+                                    title:"Lorem Ipsum dolor sit",
+                                    status:"",
+                                    date:"",
+                                    content:"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    tags:"",
+                                    actions:[
                                         {
-                                          "name":"remove",
-                                          "enabled":true,
-                                          "path":"/lorem-ipsum",
-                                          "verb":"DELETE"
+                                          name:"remove",
+                                          enabled:true,
+                                          path:"/lorem-ipsum",
+                                          verb:"DELETE"
                                         }
                                     ]
                                   }
                               },
                               {
-                                  "element":"CardTemplate",
-                                  "props":{
-                                    "icon":"fa-code-branch",
-                                    "color":"red",
-                                    "title":"Lorem Ipsum dolor sit",
-                                    "status":"archived",
-                                    "date":"Sep 15th 2023 08:15:43",
-                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                                    "tags":"Lorem ipsum #1,Lorem ipsum #2",
-                                    "actions":[
+                                  element:"CardTemplate",
+                                  props:{
+                                    icon:"fa-code-branch",
+                                    color:"red",
+                                    title:"Lorem Ipsum dolor sit",
+                                    status:"archived",
+                                    date:"Sep 15th 2023 08:15:43",
+                                    content:"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    tags:"Lorem ipsum #1,Lorem ipsum #2",
+                                    actions:[
                                         {
-                                          "name":"remove",
-                                          "enabled":false
+                                          name:"remove",
+                                          enabled:false
                                         }
                                     ]
                                   }
                               },
                               {
-                                "element":"CardTemplate",
-                                "props":{
-                                    "icon":"server",
-                                    "color":"blue",
-                                    "title":"Lorem Ipsum dolor sit",
-                                    "status":"",
-                                    "date":"",
-                                    "content":"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                                    "tags":"",
-                                    "actions":[
+                                element:"CardTemplate",
+                                props:{
+                                    icon:"server",
+                                    color:"blue",
+                                    title:"Lorem Ipsum dolor sit",
+                                    status:"",
+                                    date:"",
+                                    content:"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                    tags:"",
+                                    actions:[
                                       {
-                                          "name":"remove",
-                                          "enabled":true,
-                                          "path":"/lorem-ipsum",
-                                          "verb":"DELETE"
+                                          name:"remove",
+                                          enabled:true,
+                                          path:"/lorem-ipsum",
+                                          verb:"DELETE"
                                       }
                                     ]
                                 }
@@ -396,7 +338,7 @@ const Page = ({clientId, url}: PageType) => {
           return <TabPane key={`tabpane_${index}`} tab={data.props.label} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
         
         case "Toolbar":
-          return <Space style={{width: '100%', justifyContent: 'end'}}></Space>
+          return <Toolbar key={`toolbar_${index}`}>{ getContent(data.content, index+1) }</Toolbar>
         
         case "Widget": {
           const Component = widgets[data.element];
