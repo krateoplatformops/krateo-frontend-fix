@@ -198,7 +198,132 @@ const Page = ({clientId, url}: PageType) => {
                                 size: "default",
                                 content: {
                                   element: "FormGenerator",
-                                  props: {} // pass the data to render fields
+                                  props: { // pass the data to render fields
+                                    title: "Form Name",
+                                    description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+                                    endpoint: null, // endpoint to call submitting values in POST
+                                    prefix: "TemplateList", // label to connect data list
+                                    fields: [
+                                      {
+                                        name: "field1",
+                                        type: "text",
+                                        label: "lorem ipsum",
+                                        required: true,
+                                        rules: [
+                                          {
+                                            pattern: /^[A-Za-z]$/,
+                                            message: "Insert a valid value"
+                                          },
+                                        ],
+                                        placeholder: "lorem ipsum",
+                                      },
+                                      {
+                                        name: "field2",
+                                        type: "number",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "0,00",
+                                        extra: {
+                                          addonBefore: "€"
+                                        }
+                                      },
+                                      {
+                                        name: "field3",
+                                        type: "number",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "",
+                                      },
+                                      {
+                                        name: "field4",
+                                        type: "select",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 0,
+                                            },
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 1,
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "field5",
+                                        type: "radioGroup",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: 0,
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 0,
+                                            },
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 1,
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "field6",
+                                        type: "checkboxGroup",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: [0,2],
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 0,
+                                            },
+                                            {
+                                              label: "lorem ipsum",
+                                              value: 1,
+                                            },
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "field7",
+                                        type: "textArea",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "lorem ipsum",
+                                        initialValue: "",
+                                      },
+                                      {
+                                        name: "field8",
+                                        type: "checkbox",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: true,
+                                      },
+                                      {
+                                        name: "field9",
+                                        type: "datetime",
+                                        label: "lorem ipsum",
+                                        rules: [],
+                                        placeholder: "lorem ipsum",
+                                        initialValue: "2023-10-31T10:37Z",
+                                        extra: {
+                                          format: "DD MMM YYYY",
+                                          minDate: "2023-06-01T00:00Z",
+                                          maxDate: "2024-12-01T00:00Z",
+                                        }
+                                      },
+                                    ]
+                                  }
                                 }
                               }
                             }
@@ -218,7 +343,12 @@ const Page = ({clientId, url}: PageType) => {
                                 size: "default",
                                 content: {
                                   element: "FormGenerator",
-                                  props: {} // pass the data to render fields
+                                  props: {
+                                    title: "Form Name",
+                                    description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+                                    prefix: "", // label to connect data list
+                                    fields: []
+                                  }
                                 }
                               }
                             }
@@ -229,27 +359,27 @@ const Page = ({clientId, url}: PageType) => {
                         component:"Widget",
                         element:"DataList",
                         props:{
-                            endpoint:"/loremipsum",
+                            prefix:"TemplateList", // label to connect filters
                             data:[
                               {
-                                  element:"CardTemplate",
-                                  props:{
-                                    icon:"server",
-                                    color:"blue",
-                                    title:"Lorem Ipsum dolor sit",
-                                    status:"",
-                                    date:"",
-                                    content:"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
-                                    tags:"",
-                                    actions:[
-                                        {
-                                          name:"remove",
-                                          enabled:true,
-                                          path:"/lorem-ipsum",
-                                          verb:"DELETE"
-                                        }
-                                    ]
-                                  }
+                                element:"CardTemplate",
+                                props:{
+                                  icon:"server",
+                                  color:"blue",
+                                  title:"Lorem Ipsum dolor sit",
+                                  status:"",
+                                  date:"",
+                                  content:"<p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+                                  tags:"",
+                                  actions:[
+                                      {
+                                        name:"remove",
+                                        enabled:true,
+                                        path:"/lorem-ipsum",
+                                        verb:"DELETE"
+                                      }
+                                  ]
+                                }
                               },
                               {
                                   element:"CardTemplate",

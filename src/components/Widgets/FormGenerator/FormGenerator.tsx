@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Button, Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Space, message } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { usePostContentMutation } from "../../../features/common/commonApiSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { DataListFilterType, setFilters } from "../../../features/dataList/dataListSlice";
 
 type FieldType = {
 	name: string,
@@ -35,137 +37,13 @@ type FieldType = {
 	}[]
 }
 
-const FormGenerator = () => {
-  const data: {title: string, description: string, endpoint: string, fields: FieldType[] } = {
-		title: "Form Name",
-		description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
-		endpoint: "/loremipsum/",
-		fields: [
-			{
-				name: "field1",
-				type: "text",
-				label: "lorem ipsum",
-				required: true,
-				rules: [
-					{
-						pattern: /^[A-Za-z]$/,
-						message: "Insert a valid value"
-					},
-				],
-				placeholder: "lorem ipsum",
-			},
-			{
-				name: "field2",
-				type: "number",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "0,00",
-				extra: {
-					addonBefore: "€"
-				}
-			},
-			{
-				name: "field3",
-				type: "number",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-			},
-			{
-				name: "field4",
-				type: "select",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-				extra: {
-					options: [
-						{
-							label: "lorem ipsum",
-							value: 0,
-						},
-						{
-							label: "lorem ipsum",
-							value: 1,
-						}
-					]
-				}
-			},
-			{
-				name: "field5",
-				type: "radioGroup",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-				initialValue: 0,
-				extra: {
-					options: [
-						{
-							label: "lorem ipsum",
-							value: 0,
-						},
-						{
-							label: "lorem ipsum",
-							value: 1,
-						}
-					]
-				}
-			},
-			{
-				name: "field6",
-				type: "checkboxGroup",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-				initialValue: [0,2],
-				extra: {
-					options: [
-						{
-							label: "lorem ipsum",
-							value: 0,
-						},
-						{
-							label: "lorem ipsum",
-							value: 1,
-						},
-					]
-				}
-			},
-			{
-				name: "field7",
-				type: "textArea",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "lorem ipsum",
-				initialValue: "",
-			},
-			{
-				name: "field8",
-				type: "checkbox",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "",
-				initialValue: true,
-			},
-			{
-				name: "field9",
-				type: "datetime",
-				label: "lorem ipsum",
-				rules: [],
-				placeholder: "lorem ipsum",
-				initialValue: "2023-10-31T10:37Z",
-				extra: {
-					format: "DD MMM YYYY",
-					minDate: "2023-06-01T00:00Z",
-					maxDate: "2024-12-01T00:00Z",
-				}
-			},
-		]
-	}
+const FormGenerator = ({title, description, endpoint, prefix, fields }) => {
 
 	const [postContent, { isLoading }] = usePostContentMutation();
-  const messageKey = 'formGeneratorMessageKey';
-  const [messageApi, contextHolder] = message.useMessage();
+	const messageKey = 'formGeneratorMessageKey';
+	const [messageApi, contextHolder] = message.useMessage();
 	const [form] = Form.useForm();
+	const dispatch = useAppDispatch();
 
 	// useEffect(() => {
   //   if (initialValues)
@@ -220,13 +98,21 @@ const FormGenerator = () => {
 			}
 		});
 		// send data
-		try {
-			postContent({
-				endpoint: data.endpoint,
-				body: values,
-			})
-		} catch (err) {
-      messageApi.open({key: messageKey, type: 'error', content: 'The operation couldn\'t be completed'});
+		if (endpoint) {
+			// call endpoint
+			try {
+				postContent({
+					endpoint: endpoint,
+					body: values,
+				})
+			} catch (err) {
+			messageApi.open({key: messageKey, type: 'error', content: 'The operation couldn\'t be completed'});
+			}	
+		}
+		if (prefix) {
+			// apply filters
+			const filterValues: DataListFilterType[] = Object.keys(values).map(k => ({fieldName: values[k], fieldValue: k}))
+			dispatch(setFilters(filterValues))
 		}
 	}
 
@@ -243,12 +129,12 @@ const FormGenerator = () => {
 				form={form}
 				layout="vertical"
 				onFinish={onSubmit}
-				title={data.title}
+				title={title}
 				name="formGenerator"
 				autoComplete="off"
 			>
 				{
-					data.fields.map(field => (
+					fields.map(field => (
 						<Form.Item
 							label={field.type !== "checkbox" && field.label}
 							name={field.name}

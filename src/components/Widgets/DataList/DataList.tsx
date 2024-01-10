@@ -1,8 +1,18 @@
 import { List } from "antd";
 import widgets from "../index";
+import { useAppDispatch } from "../../../redux/hooks";
+import { useEffect } from "react";
+import { DataListType, selectDataList, setDataList } from "../../../features/dataList/dataListSlice";
+import { useSelector } from "react-redux";
 
-const DataList = ({endpoint, data}: {endpoint: string, data: {element: string, props: object }[]}) => {
+const DataList = ({prefix, data}: {prefix: string, data: DataListType[]}) => {
+  const dispatch = useAppDispatch();
+  const datalist = useSelector(selectDataList);
+  
   // save data on Redux
+  useEffect(() => {
+    dispatch(setDataList(data))
+  }, [data])
 
   return (
     <List
@@ -15,7 +25,7 @@ const DataList = ({endpoint, data}: {endpoint: string, data: {element: string, p
         xl: 3,
         xxl: 4,
       }}
-      dataSource={data}
+      dataSource={datalist}
       renderItem={(item) => {
         const Component = widgets[item.element];
         return (
