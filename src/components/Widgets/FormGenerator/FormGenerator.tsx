@@ -37,7 +37,7 @@ type FieldType = {
 	}[]
 }
 
-const FormGenerator = ({title, description, endpoint, prefix, fields }) => {
+const FormGenerator = ({title, description, endpoint, prefix, fields, onClose }) => {
 
 	const [postContent, { isLoading }] = usePostContentMutation();
 	const messageKey = 'formGeneratorMessageKey';
@@ -54,27 +54,24 @@ const FormGenerator = ({title, description, endpoint, prefix, fields }) => {
 		switch (field.type) {
 			case "text":
 				return <Input placeholder={field.placeholder} />
-				break;
 		
 			case "number":
 				return <InputNumber addonBefore={field.extra?.addonBefore} placeholder={field.placeholder} style={{width: '100%'}} />
-				break;
 
 			case "select":
 				return <Select options={field.extra?.options} placeholder={field.placeholder} />
-				break;
 
 			case "checkbox":
-				return <Checkbox>{field.label}</Checkbox>
+				return <Checkbox value={field.initialValue}>{field.label}</Checkbox>
 
 			case "datetime":
 				return	<DatePicker
-									allowClear={true}
-									changeOnBlur={true}
-									format={field.extra?.format}
-									placeholder={field.placeholder}
-									style={{width: '100%'}}
-								/>
+							allowClear={true}
+							changeOnBlur={true}
+							format={field.extra?.format}
+							placeholder={field.placeholder}
+							style={{width: '100%'}}
+						/>
 
 			case "textArea":
 				return <Input.TextArea rows={3} placeholder={field.placeholder} />
@@ -106,13 +103,20 @@ const FormGenerator = ({title, description, endpoint, prefix, fields }) => {
 					body: values,
 				})
 			} catch (err) {
-			messageApi.open({key: messageKey, type: 'error', content: 'The operation couldn\'t be completed'});
+				messageApi.open({key: messageKey, type: 'error', content: 'The operation couldn\'t be completed'});
 			}	
 		}
 		if (prefix) {
 			// apply filters
-			const filterValues: DataListFilterType[] = Object.keys(values).map(k => ({fieldName: values[k], fieldValue: k}))
-			dispatch(setFilters(filterValues))
+			let filters: DataListFilterType[] = [];
+			fields.forEach((field: FieldType, index) => {
+				if (Object.values(values)[index] !== undefined) {
+					filters = [...filters, {fieldType: field.type, fieldName: field.name, fieldValue: Object.values(values)[index]}]
+				}
+			})
+			dispatch(setFilters(filters))
+      		// close panel
+			onClose()
 		}
 	}
 
@@ -139,6 +143,7 @@ const FormGenerator = ({title, description, endpoint, prefix, fields }) => {
 							label={field.type !== "checkbox" && field.label}
 							name={field.name}
 							rules={field.required ? [...field.rules, {required: true, message: "Insert a value"}] : field.rules}
+							valuePropName={field.type === "checkbox" ? "checked" : undefined}
 						>
 							{ renderField(field) }
 						</Form.Item>

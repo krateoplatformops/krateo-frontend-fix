@@ -47,7 +47,7 @@ const ButtonPanel = ({button, panel}: ButtonPanelType) => {
       >
         <Space direction="vertical" style={{width: '100%'}}>
           <Typography.Paragraph>{panel.description}</Typography.Paragraph>
-          <Component {...panel.content.props} />
+          <Component {...panel.content.props} onClose={() => setIsOpen(false)} />
         </Space>
       </Drawer>
     </>

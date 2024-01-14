@@ -188,12 +188,11 @@ const Page = ({clientId, url}: PageType) => {
                             element: "ButtonPanel",
                             props: {
                               button: {
-                                label: "Filters",
+                                label: "Complex Form sample",
                                 icon: "filter",
-                                badge: "3",
                               },
                               panel: {
-                                title: "Filters",
+                                title: "Complex Form sample",
                                 description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
                                 size: "default",
                                 content: {
@@ -333,6 +332,111 @@ const Page = ({clientId, url}: PageType) => {
                             element: "ButtonPanel",
                             props: {
                               button: {
+                                label: "Filters",
+                                icon: "filter",
+                                badge: "3",
+                              },
+                              panel: {
+                                title: "Filters",
+                                description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+                                size: "default",
+                                content: {
+                                  element: "FormGenerator",
+                                  props: { // pass the data to render fields
+                                    title: "Form Name",
+                                    description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+                                    endpoint: null, // endpoint to call submitting values in POST
+                                    prefix: "TemplateList", // label to connect data list
+                                    fields: [
+                                      {
+                                        name: "id",
+                                        type: "number",
+                                        label: "ID",
+                                        rules: [],
+                                        placeholder: "",
+                                      },
+                                      {
+                                        name: "title",
+                                        type: "text",
+                                        label: "Title",
+                                        rules: [],
+                                        placeholder: "type a title",
+                                      },
+                                      {
+                                        name: "content",
+                                        type: "text",
+                                        label: "Content",
+                                        rules: [],
+                                        placeholder: "type a text",
+                                      },
+                                      {
+                                        name: "color",
+                                        type: "checkboxGroup",
+                                        label: "Color",
+                                        rules: [],
+                                        placeholder: "",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "blue",
+                                              value: "blue",
+                                            },
+                                            {
+                                              label: "red",
+                                              value: "red",
+                                            },
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "icon",
+                                        type: "select",
+                                        label: "Icon",
+                                        rules: [],
+                                        placeholder: "",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "server",
+                                              value: "server",
+                                            },
+                                            {
+                                              label: "branch",
+                                              value: "fa-code-branch",
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "status",
+                                        type: "checkbox",
+                                        label: "archived",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: "archived",
+                                      },
+                                      {
+                                        name: "date",
+                                        type: "datetime",
+                                        label: "archived date",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: "",
+                                        extra: {
+                                          format: "DD MMM YYYY",
+                                        }
+                                      },
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            component: "Widget",
+                            element: "ButtonPanel",
+                            props: {
+                              button: {
                                 label: "New Template",
                                 icon: "circle-plus",
                                 type: "primary"
@@ -364,6 +468,7 @@ const Page = ({clientId, url}: PageType) => {
                               {
                                 element:"CardTemplate",
                                 props:{
+                                  id: 1,
                                   icon:"server",
                                   color:"blue",
                                   title:"Lorem Ipsum dolor sit",
@@ -384,6 +489,7 @@ const Page = ({clientId, url}: PageType) => {
                               {
                                   element:"CardTemplate",
                                   props:{
+                                    id: 2,
                                     icon:"fa-code-branch",
                                     color:"red",
                                     title:"Lorem Ipsum dolor sit",
@@ -402,6 +508,7 @@ const Page = ({clientId, url}: PageType) => {
                               {
                                 element:"CardTemplate",
                                 props:{
+                                    id: 3,
                                     icon:"server",
                                     color:"blue",
                                     title:"Lorem Ipsum dolor sit",
