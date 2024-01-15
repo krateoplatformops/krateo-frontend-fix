@@ -334,7 +334,7 @@ const Page = ({clientId, url}: PageType) => {
                               button: {
                                 label: "Filters",
                                 icon: "filter",
-                                badge: "3",
+                                badge: true,
                               },
                               panel: {
                                 title: "Filters",
@@ -409,11 +409,22 @@ const Page = ({clientId, url}: PageType) => {
                                       },
                                       {
                                         name: "status",
-                                        type: "checkbox",
-                                        label: "archived",
+                                        type: "radioGroup",
+                                        label: "Status",
                                         rules: [],
                                         placeholder: "",
-                                        initialValue: "archived",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "active",
+                                              value: "",
+                                            },
+                                            {
+                                              label: "archived",
+                                              value: "archived",
+                                            },
+                                          ]
+                                        }
                                       },
                                       {
                                         name: "date",

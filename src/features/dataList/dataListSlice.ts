@@ -56,11 +56,11 @@ export const dataListSlice = createSlice({
     setFilters: (state, action: PayloadAction<DataListFilterType[]>) => {
       state.filters = action.payload;
       state.filteredData = state.data.filter(el => {
-        let valid = false;
+        let valid = true;
         action.payload.forEach(filter => {
           const index = Object.keys(el.props).indexOf(filter.fieldName);
           const valueToCompare: string = Object.values(el.props)[index] as string;
-          // TODO: handle multiple filters, keep form data, filters number
+          // TODO: handle multiple filters
           if (index > -1) {
             switch (filter.fieldType) {
               case "text":
@@ -73,7 +73,7 @@ export const dataListSlice = createSlice({
               case "select": // tested
                 valid = valueToCompare === filter.fieldValue
                 break;
-              case "radioGroup":
+              case "radioGroup": // tested
                 valid = valueToCompare === filter.fieldValue
                 break;
               case "checkboxGroup": // tested
