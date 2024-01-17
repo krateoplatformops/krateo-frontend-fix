@@ -2,33 +2,6 @@ import { Progress } from "antd";
 import Panel from "../../Panel/Panel";
 import styles from "./styles.module.scss";
 
-const mockData:ChartBarsData[] = [
-  {
-    label: "MySQL",
-    value: "82",
-    percentage: 23,
-    color: "exception"
-  },
-  {
-    label: "Git Service",
-    value: "124",
-    percentage: 68,
-    color: "active"
-  },
-  {
-    label: "AWS",
-    value: "75",
-    percentage: 16,
-    color: "success"
-  },
-  {
-    label: "Atlassian Jira",
-    value: "93",
-    percentage: 43,
-    color: "normal"
-  },
-];
-
 type ChartBarsData = {
   label: string;
   value: string;
@@ -43,8 +16,6 @@ type ChartBarsType = {
 }
 
 const ChartBars = ({title, tooltip, data}: ChartBarsType) => {
-  data = mockData;
-
   return (
     <Panel
       title={title}

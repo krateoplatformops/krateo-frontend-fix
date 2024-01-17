@@ -52,115 +52,111 @@ const Page = ({clientId, url}: PageType) => {
                         },
                         {
                           component: "Col",
-                          props:  4,
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartBars",
+                            props: { 
+                              title: "Most used Templates", 
+                              tooltip: "Lorem ipsum dolor sit amet",
+                              data: [
+                                {
+                                  label: "Lorem ipsum 1",
+                                  value: "82",
+                                  percentage: 23,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 2",
+                                  value: "124",
+                                  percentage: 68,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 3",
+                                  value: "75",
+                                  percentage: 16,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 4",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 5",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "normal"
+                                },
+                              ]
+                            }
+                          }],
+                        },
+                        {
+                          component: "Col",
+                          props: 2,
+                          content: [{
+                            component: "Widget",
+                            element: "ChartBars",
+                            props: {
+                              title: "Less used Templates", 
+                              tooltip: "Lorem ipsum dolor sit amet", 
+                              data: [
+                                {
+                                  label: "Lorem ipsum 1",
+                                  value: "82",
+                                  percentage: 23,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 2",
+                                  value: "124",
+                                  percentage: 68,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 3",
+                                  value: "75",
+                                  percentage: 16,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 4",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 5",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "exception"
+                                },
+                              ]
+                            }
+                          }],
+                        },
+                      ],
+                    },
+                    {
+                      component: "Row",
+                      content: [
+                        {
+                          component: "Col",
+                          props:  6,
                           content: [{
                             component: "Widget",
                             element: "ChartLine",
                             props: {
-                              title: "trend",
+                              title: "Templates Trend",
                               tooltip: "this is a beautiful line chart",
                             }
                           }],
                         }
                       ],
                     },
-                    {
-                      component: "Row",
-                      content: [
-                        {
-                          component: "Col",
-                          props: 2,
-                          content: [{
-                            component: "Widget",
-                            element: "ChartBars",
-                            props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                          }],
-                        },
-                        {
-                          component: "Col",
-                          props: 2,
-                          content: [{
-                            component: "Widget",
-                            element: "ChartBars",
-                            props: { title: "Most installed Services", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                          }],
-                        },
-                        {
-                          component: "Col",
-                          props: 2,
-                          content: [{
-                            component: "Widget",
-                            element: "ChartMultipleBars",
-                            props: { title: "System Status", tooltip: "Lorem ipsum dolor sit amet", data: []}
-                          }],
-                        }
-                      ],
-                    },
-                    {
-                      component: "Row",
-                      content: [
-                        {
-                          component: "Col",
-                          props: 3,
-                          content: [{
-                            component: "Widget",
-                            element: "CardTemplate",
-                            props: {
-                              icon: "server",
-                              color: "blue",
-                              title: "Lorem Ipsum dolor sit",
-                              status: "",
-                              date: "",
-                              content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
-                              tags: "",
-                              actions:[
-                                  {
-                                    name:"remove",
-                                    enabled:false
-                                  }
-                              ]
-                            }
-                          }],
-                        },
-                        {
-                          component: "Col",
-                          props: 3,
-                          content: [{
-                            component: "Widget",
-                            element: "CardTemplate",
-                            props: {
-                              icon: "server",
-                              color: "blue",
-                              title: "Lorem Ipsum dolor sit",
-                              status: "archived",
-                              date: "Sep 15th 2023 08:15:43",
-                              content: <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>,
-                              tags: "Lorem ipsum #1, Lorem ipsum #2",
-                              actions:[
-                                  {
-                                    name:"remove",
-                                    enabled:false
-                                  }
-                              ]
-                            }
-                          }],
-                        },
-                      ],
-                    },
-                    {
-                      component: "Row",
-                      content: [
-                        {
-                          component: "Col",
-                          props: 5,
-                          content: [{
-                            component: "Widget",
-                            element: "Widget1",
-                            props: { text: "This is a widget at 66%"}
-                          }],
-                        },
-                      ],
-                    }
                   ]
                 }
               ]
@@ -188,150 +184,6 @@ const Page = ({clientId, url}: PageType) => {
                             element: "ButtonPanel",
                             props: {
                               button: {
-                                label: "Complex Form sample",
-                                icon: "filter",
-                              },
-                              panel: {
-                                title: "Complex Form sample",
-                                description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
-                                size: "default",
-                                content: {
-                                  element: "FormGenerator",
-                                  props: { // pass the data to render fields
-                                    title: "Form Name",
-                                    description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
-                                    endpoint: null, // endpoint to call submitting values in POST
-                                    prefix: "TemplateList", // label to connect data list
-                                    fields: [
-                                      {
-                                        name: "field1",
-                                        type: "text",
-                                        label: "lorem ipsum",
-                                        required: true,
-                                        rules: [
-                                          {
-                                            pattern: /^[A-Za-z]$/,
-                                            message: "Insert a valid value"
-                                          },
-                                        ],
-                                        placeholder: "lorem ipsum",
-                                      },
-                                      {
-                                        name: "field2",
-                                        type: "number",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "0,00",
-                                        extra: {
-                                          addonBefore: "€"
-                                        }
-                                      },
-                                      {
-                                        name: "field3",
-                                        type: "number",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "",
-                                      },
-                                      {
-                                        name: "field4",
-                                        type: "select",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "",
-                                        extra: {
-                                          options: [
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 0,
-                                            },
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 1,
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      {
-                                        name: "field5",
-                                        type: "radioGroup",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "",
-                                        initialValue: 0,
-                                        extra: {
-                                          options: [
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 0,
-                                            },
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 1,
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      {
-                                        name: "field6",
-                                        type: "checkboxGroup",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "",
-                                        initialValue: [0,2],
-                                        extra: {
-                                          options: [
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 0,
-                                            },
-                                            {
-                                              label: "lorem ipsum",
-                                              value: 1,
-                                            },
-                                          ]
-                                        }
-                                      },
-                                      {
-                                        name: "field7",
-                                        type: "textArea",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "lorem ipsum",
-                                        initialValue: "",
-                                      },
-                                      {
-                                        name: "field8",
-                                        type: "checkbox",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "",
-                                        initialValue: true,
-                                      },
-                                      {
-                                        name: "field9",
-                                        type: "datetime",
-                                        label: "lorem ipsum",
-                                        rules: [],
-                                        placeholder: "lorem ipsum",
-                                        initialValue: "2023-10-31T10:37Z",
-                                        extra: {
-                                          format: "DD MMM YYYY",
-                                          minDate: "2023-06-01T00:00Z",
-                                          maxDate: "2024-12-01T00:00Z",
-                                        }
-                                      },
-                                    ]
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            component: "Widget",
-                            element: "ButtonPanel",
-                            props: {
-                              button: {
                                 label: "Filters",
                                 icon: "filter",
                                 badge: true,
@@ -349,13 +201,6 @@ const Page = ({clientId, url}: PageType) => {
                                     prefix: "TemplateList", // label to connect data list
                                     fields: [
                                       {
-                                        name: "id",
-                                        type: "number",
-                                        label: "ID",
-                                        rules: [],
-                                        placeholder: "",
-                                      },
-                                      {
                                         name: "title",
                                         type: "text",
                                         label: "Title",
@@ -368,44 +213,6 @@ const Page = ({clientId, url}: PageType) => {
                                         label: "Content",
                                         rules: [],
                                         placeholder: "type a text",
-                                      },
-                                      {
-                                        name: "color",
-                                        type: "checkboxGroup",
-                                        label: "Color",
-                                        rules: [],
-                                        placeholder: "",
-                                        extra: {
-                                          options: [
-                                            {
-                                              label: "blue",
-                                              value: "blue",
-                                            },
-                                            {
-                                              label: "red",
-                                              value: "red",
-                                            },
-                                          ]
-                                        }
-                                      },
-                                      {
-                                        name: "icon",
-                                        type: "select",
-                                        label: "Icon",
-                                        rules: [],
-                                        placeholder: "",
-                                        extra: {
-                                          options: [
-                                            {
-                                              label: "server",
-                                              value: "server",
-                                            },
-                                            {
-                                              label: "branch",
-                                              value: "fa-code-branch",
-                                            }
-                                          ]
-                                        }
                                       },
                                       {
                                         name: "status",
@@ -448,12 +255,12 @@ const Page = ({clientId, url}: PageType) => {
                             element: "ButtonPanel",
                             props: {
                               button: {
-                                label: "New Template",
+                                label: "Add Template",
                                 icon: "circle-plus",
                                 type: "primary"
                               },
                               panel: {
-                                title: "New Template",
+                                title: "Add Template",
                                 description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
                                 size: "default",
                                 content: {
@@ -461,8 +268,43 @@ const Page = ({clientId, url}: PageType) => {
                                   props: {
                                     title: "Form Name",
                                     description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+                                    endpoint: "/createTemplate", // endpoint to call submitting values in POST
                                     prefix: "", // label to connect data list
-                                    fields: []
+                                    fields: [
+                                      {
+                                        name: "endpointType",
+                                        type: "select",
+                                        label: "Endpoint Type",
+                                        required: true,
+                                        rules: [],
+                                        placeholder: "",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "lorem ipsum 1",
+                                              value: "lorem ipsum 1",
+                                            },
+                                            {
+                                              label: "lorem ipsum 2",
+                                              value: "lorem ipsum 2",
+                                            },
+                                            {
+                                              label: "lorem ipsum 3",
+                                              value: "lorem ipsum 3",
+                                            },
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "url",
+                                        type: "text",
+                                        label: "URL",
+                                        required: true,
+                                        rules: [],
+                                        placeholder: "https://",
+                                      },
+                                      
+                                    ]
                                   }
                                 }
                               }
