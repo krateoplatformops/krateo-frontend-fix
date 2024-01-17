@@ -60,38 +60,37 @@ export const dataListSlice = createSlice({
         action.payload.forEach(filter => {
           const index = Object.keys(el.props).indexOf(filter.fieldName);
           const valueToCompare: string = Object.values(el.props)[index] as string;
-          // TODO: handle multiple filters
           if (index > -1) {
             switch (filter.fieldType) {
               case "text":
               case "textArea": // tested
-                valid = valueToCompare?.toLowerCase().includes((filter.fieldValue as string)?.toLowerCase()) // text, textarea -> include
+                valid = valid && valueToCompare?.toLowerCase().includes((filter.fieldValue as string)?.toLowerCase()) // text, textarea -> include
                 break;
               case "number": // tested
-                valid = valueToCompare === filter.fieldValue
+                valid = valid && valueToCompare === filter.fieldValue
                 break;
               case "select": // tested
-                valid = valueToCompare === filter.fieldValue
+                valid = valid && valueToCompare === filter.fieldValue
                 break;
               case "radioGroup": // tested
-                valid = valueToCompare === filter.fieldValue
+                valid = valid && valueToCompare === filter.fieldValue
                 break;
               case "checkboxGroup": // tested
-                valid = (filter.fieldValue as string[]).filter(filter => valueToCompare === filter).length > 0
+                valid = valid && (filter.fieldValue as string[]).filter(filter => valueToCompare === filter).length > 0
                 break;
               case "checkbox": // tested send true/false (checked)
-                valid = valueToCompare === filter.fieldValue
+                valid = valid && valueToCompare === filter.fieldValue
                 break;
               case "datetime": // Needs ISO from K8
                 const dateFilter = new Date((filter.fieldValue as string))
                 const dateToCompare = new Date(valueToCompare)
-                valid = (dateFilter.getDate() === dateToCompare.getDate() && 
+                valid = valid && (dateFilter.getDate() === dateToCompare.getDate() && 
                          dateFilter.getMonth() === dateToCompare.getMonth() && 
                          dateFilter.getFullYear() === dateToCompare.getFullYear()
                         )
                 break;
               default:
-                valid = valueToCompare === filter.fieldValue
+                valid = valid && valueToCompare === filter.fieldValue
                 break;
             }
           }
