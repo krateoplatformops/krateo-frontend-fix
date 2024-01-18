@@ -78,10 +78,10 @@ const FormGenerator = ({title, description, endpoint, initialValues, prefix, fie
 				return <Input.TextArea rows={3} placeholder={field.placeholder} />
 			
 			case "checkboxGroup":
-				return <Checkbox.Group>{field.extra?.options?.map(el => <Checkbox value={el.value}>{el.label}</Checkbox>)}</Checkbox.Group>
+				return <Checkbox.Group>{field.extra?.options?.map((el, i) => <Checkbox key={`checkbox_${i}`} value={el.value}>{el.label}</Checkbox>)}</Checkbox.Group>
 			
 			case "radioGroup":
-				return <Radio.Group>{field.extra?.options?.map(el => <Radio value={el.value}>{el.label}</Radio>)}</Radio.Group>
+				return <Radio.Group>{field.extra?.options?.map((el, i) => <Radio key={`radio_${i}`} value={el.value}>{el.label}</Radio>)}</Radio.Group>
 
 			default:
 				break;
@@ -149,8 +149,9 @@ const FormGenerator = ({title, description, endpoint, initialValues, prefix, fie
 				initialValues={initialValues}
 			>
 				{
-					fields.map(field => (
+					fields.map((field, i) => (
 						<Form.Item
+							key={`FormItem_${i}`}
 							label={field.type !== "checkbox" && field.label}
 							name={field.name}
 							rules={field.required ? [...field.rules, {required: true, message: "Insert a value"}] : field.rules}

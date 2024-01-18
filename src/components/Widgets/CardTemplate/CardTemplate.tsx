@@ -22,7 +22,7 @@ const CardTemplate = ({icon, color, title, status, date, content, tags, actions}
         </Space>
       }
       actions={[
-        <Space wrap key='1'>{tags?.split(",")?.map((tag) => <Tag>{tag}</Tag>)}</Space>,
+        <Space wrap key='1'>{tags?.split(",")?.map((tag, i) => <Tag key={`Tag_${i}`}>{tag}</Tag>)}</Space>,
         <Button key='2' onClick={() => {}} icon={<DeleteOutlined />} type="text" disabled={!actions || actions.filter((p) => (p.name === "remove" && p.enabled === true))?.length === 0} />
       ]}
     >

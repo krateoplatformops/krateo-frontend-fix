@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { RouterProvider, createBrowserRouter, RouteObject } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, RouteObject, Link } from "react-router-dom";
 import Skeleton from "./components/Skeleton/Skeleton";
 import Page from "./components/Page/Page"
 import ErrorPage from "./pages/ErrorPage";
@@ -135,7 +135,8 @@ function App() {
       {
         path: r.path !== "/" ? r.path : undefined,
         index: r.path === "/",
-        element: <Page clientId={clientId} url={r.path} /> 
+        element: <Page clientId={clientId} url={r.path} />,
+        handle: r.handle,
       }
     ));
     setRouter(

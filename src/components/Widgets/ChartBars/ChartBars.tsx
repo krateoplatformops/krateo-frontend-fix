@@ -23,8 +23,8 @@ const ChartBars = ({title, tooltip, data}: ChartBarsType) => {
       content={
         <div className={styles.chart}>
           {
-            data.map((el) => (
-              <div className={styles.chartBarsRow}>
+            data.map((el, i) => (
+              <div key={`ChartBars_${i}`} className={styles.chartBarsRow}>
                 <div className={styles.chartBarsData}>
                   <div className={styles.chartBarsLabel}>{el.label}</div>
                   <div className={styles.chartBarsValue}>{el.value}</div>

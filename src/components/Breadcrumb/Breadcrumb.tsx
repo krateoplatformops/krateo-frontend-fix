@@ -9,36 +9,18 @@ const Breadcrumb = () => {
   const matches = useMatches();
 
   useEffect(() => {
-    const arrMatches: {handle: {crumb: string}, pathname: string, params: Params<string>}[] = matches.filter((m) => m.handle !== undefined).map((m) => ({handle: Object.assign({crumb: ''}, m.handle), pathname: m.pathname, params: m.params} ));
+    const path = matches.filter(el => el.pathname !== "/")[0]?.pathname?.replace("/", "");
     
-    if (arrMatches.length > 0) {
+    if (path) {
       const items: Partial<BreadcrumbItemType & BreadcrumbSeparatorType>[] = [];
-      const arrPath = arrMatches[0].pathname.substring(1).split('/');
-      
-      /**
-       * - replace handle.crumb placeholder with params
-       * - split handle.crumb to create an array
-       * - cicle array to create breadcrumb
-       */
-
-      const arrParams = Object.keys(arrMatches[0].params);
-      let crumbString = arrMatches[0].handle.crumb;
-      arrParams.forEach((el) => {
-        crumbString = crumbString.replace(`{${el}}`, arrMatches[0].params[el]!);
-      });
-
-      const arrCrumb = crumbString.split('/');
-    
-      arrCrumb.forEach((el, i) => {
-        if (el !== '') {
-          if (i === arrCrumb.length-1) {
-            items.push({title: el})
-          } else {
-            items.push({title: <Link to={getFullPath(i, arrPath)}>{el}</Link>})
-          }
+      const arrPath = path.split("/");
+      arrPath.forEach((el, i) => {
+        if (i === arrPath.length-1) {
+          items.push({title: el})
+        } else {
+          items.push({title: <Link to={getFullPath(i, arrPath)}>{el}</Link>})
         }
-      });
-
+      })
       setItems(items);
     }
   }, [matches]);
