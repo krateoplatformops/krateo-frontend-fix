@@ -3,11 +3,19 @@ import { Card, Avatar, Button, Space, Typography, Tag } from "antd";
 import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getColorCode } from "../../../utils/colors";
+import { useNavigate } from "react-router-dom";
 
-const CardTemplate = ({icon, color, title, status, date, content, tags, actions}) => {
-  
+
+const CardTemplate = ({id, icon, color, title, status, date, content, tags, actions}) => {
+  const navigate = useNavigate();
+
+  const onChangePage = () => {
+    navigate(id.toString())
+  } 
+
   return (
     <Card
+      onClick={onChangePage}
       className={styles.card}
       title={
         <Space size="large" className={styles.header}>
@@ -23,7 +31,7 @@ const CardTemplate = ({icon, color, title, status, date, content, tags, actions}
       }
       actions={[
         <Space wrap key='1'>{tags?.split(",")?.map((tag, i) => <Tag key={`Tag_${i}`}>{tag}</Tag>)}</Space>,
-        <Button key='2' onClick={() => {}} icon={<DeleteOutlined />} type="text" disabled={!actions || actions.filter((p) => (p.name === "remove" && p.enabled === true))?.length === 0} />
+        <Button key='2' onClick={(e) => {e.stopPropagation(); console.log("CLICK DELETE")}} icon={<DeleteOutlined />} type="text" disabled={!actions || actions.filter((p) => (p.name === "remove" && p.enabled === true))?.length === 0} />
       ]}
     >
       {content}
