@@ -26,8 +26,6 @@ function App() {
   const messageKey = 'appMessageKey';
 
   const fetchPageData = (clientId) => {
-    console.log(clientId);
-    
     return (
       {
         routes: [
@@ -38,77 +36,11 @@ function App() {
             menu: true,
           },
           {
-            label: "Projects",
-            path: "/projects",
-            icon: getIcon("projects"),
-            menu: true,
-          },
-          {
-            label: "Projects",
-            path: "/projects/:projectId",
-            icon: "",
-            menu: false,
-          },
-          {
-            label: "Projects",
-            path: "/projects/:projectId/create-deployment/:deploymentId",
-            icon: "",
-            menu: false,
-          },
-          {
-            label: "Projects",
-            path: "/projects/:projectId/:deploymentId",
-            icon: "",
-            menu: false,
-          },
-          {
             label: "Templates",
             path: "/templates",
             icon: getIcon('templates'),
             menu: true,
           },
-          {
-            label: "Providers",
-            path: "/providers",
-            icon: getIcon('providers'),
-            menu: true,
-          },
-          {
-            label: "Service Status",
-            path: "/service-status",
-            icon: getIcon('status'),
-            menu: true,
-          },
-          {
-            label: "Organizations",
-            path: "/organizations",
-            icon: getIcon('organizations'),
-            menu: true,
-          },
-          {
-            label: "Logs",
-            path: "/logs",
-            icon: getIcon('logs'),
-            menu: true,
-          },
-          {
-            label: "Endpoints",
-            path: "/endpoints",
-            icon: getIcon('endpoints'),
-            menu: true,
-          },
-          {
-            label: "Licenses",
-            path: "/licenses",
-            icon: getIcon('licenses'),
-            menu: true,
-          },
-          {
-            label: "",
-            path: "/test",
-            icon: "",
-            menu: false,
-          }
         ],
         notifications: [
           {

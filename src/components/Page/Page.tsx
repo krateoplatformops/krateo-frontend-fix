@@ -6,6 +6,7 @@ import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
 import styles from "./styles.module.scss";
 import Toolbar from "../Toolbar/Toolbar";
+import Skeleton from "../Skeleton/Skeleton";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
@@ -1332,47 +1333,6 @@ const Page = ({clientId, url}: PageType) => {
     // }
   }
 
-  // for all routes
-  const ___getContent = useCallback((data, i): ReactElement => {
-    const renderComponent = (data, index) => {
-      switch (data.component) {
-        case "Row":
-          return <Row key={`row_${index}`} {...data.props} className={styles.row}>{ getContent(data.content, index+1) }</Row>
-
-        case "Col":
-          return <Col key={`col_${index}`} {...getColProps(data.props)} className={styles.col}>{ getContent(data.content, index+1) }</Col>
-  
-        case "Tabs":
-          return <Tabs key={`tabs_${index}`} {...data.props} className={styles.tabs}>{ getContent(data.content, index+1) }</Tabs>
-        
-        case "TabPane":
-          return <TabPane key={`tabpane_${index}`} tab={data.props.label} className={styles.tabpane}>{ getContent(data.content, index+1) }</TabPane>
-        
-        case "Toolbar":
-          return <Toolbar key={`toolbar_${index}`}>{ getContent(data.content, index+1) }</Toolbar>
-        
-        case "Widget": {
-          const Component = widgets[data.element];
-          return <Component key={`widget_${index}`} {...data.props} />
-        }
-  
-        default: // null -> exit recoursive loop
-          return <></>
-          break;
-      }
-    }
-
-    // recoursive function to scan page definition json
-    // data is the array of elements, root is an object
-    if (!data.length) {
-      // root element
-      return renderComponent(data, i);
-    } else {
-      return data.map((el, index) => renderComponent(el, index));
-    }
-  }, []);
-
-  // for "/test" route only
   const getContent = useCallback((data, i): ReactElement => {
     const renderComponent = (data, index) => {
       switch (data.kind) {
@@ -1392,7 +1352,7 @@ const Page = ({clientId, url}: PageType) => {
           return <Toolbar key={data.metadata.uid}>{ getContent(data.status.content.items, index+1) }</Toolbar>
           break;
         default: 
-          if (data.apiVersion.indexOf("widgets") === 0) {
+          if (data.apiVersion?.indexOf("widgets") === 0) {
             const Component = widgets[data.kind];
             return data.status.cards.map((el, i) => <Component key={`widget_${data.metadata.uid}_$${i}`} {...el} />) 
           } else {
@@ -1414,29 +1374,32 @@ const Page = ({clientId, url}: PageType) => {
   }, []);
 
   // mock data
-  useEffect(() => {
-    const createPage = (data) => {
-      setContentPage(getContent(data, 1)); // root
-    }
-
-    const response = fetchPage(clientId, url);
-    createPage(response);
-  }, [clientId, getContent, url]);
-
-  // api data
   // useEffect(() => {
   //   const createPage = (data) => {
   //     setContentPage(getContent(data, 1)); // root
   //   }
 
-  //   if (data && isSuccess) {
-  //     createPage(data);
-  //   }
-  // }, [data, getContent, isSuccess]);
+  //   const response = fetchPage(clientId, url);
+  //   createPage(response);
+  // }, [clientId, getContent, url]);
+
+  // api data
+  useEffect(() => {
+    const createPage = (data) => {
+      setContentPage(getContent(data, 1)); // root
+    }
+
+    if (data && isSuccess) {
+      createPage(data);
+    }
+  }, [data, getContent, isSuccess]);
 
   return (
     <section className={styles.page}>
-      { contentPage }
+      {
+        isLoading && <Skeleton />
+      }
+      { isSuccess && contentPage }
     </section>
   );
 }

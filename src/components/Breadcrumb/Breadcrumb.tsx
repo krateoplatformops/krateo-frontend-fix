@@ -22,6 +22,8 @@ const Breadcrumb = () => {
         }
       })
       setItems(items);
+    } else {
+      setItems([{title: "Dashboard"}])
     }
   }, [matches]);
 
