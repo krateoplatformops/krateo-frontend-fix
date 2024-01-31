@@ -10,7 +10,10 @@ import Skeleton from "../Skeleton/Skeleton";
 
 const Page = ({clientId, url}: PageType) => {
   const [contentPage, setContentPage] = useState(<></>);
-  const {data, isLoading, isError, isSuccess} = useGetPageContentQuery({clientId, url});
+  const ls = localStorage.getItem("user");
+  const username = ls && JSON.parse(ls)?.user.username;
+  const group = ls && JSON.parse(ls)?.groups[0]
+  const {data, isLoading, isError, isSuccess} = useGetPageContentQuery({clientId, url, username, group});
 
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
