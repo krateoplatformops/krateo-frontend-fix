@@ -102,6 +102,12 @@ function App() {
             path: "/licenses",
             icon: getIcon('licenses'),
             menu: true,
+          },
+          {
+            label: "",
+            path: "/test",
+            icon: "",
+            menu: false,
           }
         ],
         notifications: [

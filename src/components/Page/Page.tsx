@@ -756,7 +756,7 @@ const Page = ({clientId, url}: PageType) => {
       }
     }
 
-    // deployment details (tabs)
+    // deployment details (page with tabs)
     if (window.location.pathname.match(/^\/projects\/[0-9]+\/[0-9]+$/g)) {
       return {
         component: "Tabs",
@@ -834,29 +834,506 @@ const Page = ({clientId, url}: PageType) => {
         ]
       }
     }
-  }
 
-  const getColProps = (size) => {
-    // Col cases: 8-8-8, 6-6-6-6, 12-12, 24, 6-6-12, 8-16
-    switch (size) {
-      case 1:
-        return {xs: 24, md: 6}
-    
-      case 2:
-        return {xs: 24, md: 8}
-    
-      case 3:
-        return {xs: 24, md: 12}
-    
-      case 4:
-        return {xs: 24, md: 16}
-    
-      default:
-        return {xs: 24, md: 24}
+    // BE2FE json
+    if (window.location.pathname.indexOf("/test") > -1) {
+      return {
+        "kind": "Row",
+        "apiVersion": "layout.ui.krateo.io/v1alpha1",
+        "metadata": {
+          "name": "two",
+          "namespace": "demo-system",
+          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbb",
+          "resourceVersion": "238612",
+          "generation": 1,
+          "creationTimestamp": "2024-01-24T16:30:14Z",
+          "annotations": {
+            "krateo.io/allowed-verbs": "get,list",
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"layout.ui.krateo.io/v1alpha1\",\"kind\":\"Row\",\"metadata\":{\"annotations\":{},\"name\":\"two\",\"namespace\":\"demo-system\"},\"spec\":{\"columnListRef\":[{\"name\":\"plain\",\"namespace\":\"demo-system\"},{\"name\":\"one\",\"namespace\":\"demo-system\"}]}}\n"
+          },
+          "managedFields": [
+            {
+              "manager": "kubectl-client-side-apply",
+              "operation": "Update",
+              "apiVersion": "layout.ui.krateo.io/v1alpha1",
+              "time": "2024-01-24T16:30:14Z",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:annotations": {
+                    ".": {},
+                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                  }
+                },
+                "f:spec": {
+                  ".": {},
+                  "f:columnListRef": {}
+                }
+              }
+            }
+          ]
+        },
+        "spec": {
+          "columnListRef": [
+            {
+              "name": "plain",
+              "namespace": "demo-system"
+            },
+            {
+              "name": "one",
+              "namespace": "demo-system"
+            }
+          ]
+        },
+        "status": {
+          "content": {
+            "kind": "ColumnList",
+            "apiVersion": "layout.ui.krateo.io/v1alpha1",
+            "metadata": {},
+            "items": [
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "name": "plain",
+                  "namespace": "demo-system",
+                  "uid": "10223467-3e48-4b30-8215-ffc2a8e1f2bd",
+                  "resourceVersion": "238603",
+                  "generation": 1,
+                  "creationTimestamp": "2024-01-24T16:29:33Z",
+                  "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"layout.ui.krateo.io/v1alpha1\",\"kind\":\"Column\",\"metadata\":{\"annotations\":{},\"name\":\"plain\",\"namespace\":\"demo-system\"},\"spec\":{\"app\":{\"props\":{\"width\":\"12\"}},\"cardTemplateListRef\":[{\"name\":\"plain\",\"namespace\":\"demo-system\"}]}}\n"
+                  },
+                  "managedFields": [
+                    {
+                      "manager": "kubectl-client-side-apply",
+                      "operation": "Update",
+                      "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                      "time": "2024-01-24T16:29:33Z",
+                      "fieldsType": "FieldsV1",
+                      "fieldsV1": {
+                        "f:metadata": {
+                          "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                          }
+                        },
+                        "f:spec": {
+                          ".": {},
+                          "f:app": {
+                            ".": {},
+                            "f:props": {
+                              ".": {},
+                              "f:width": {}
+                            }
+                          },
+                          "f:cardTemplateListRef": {}
+                        }
+                      }
+                    }
+                  ]
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "16"
+                    }
+                  },
+                  "cardTemplateListRef": [
+                    {
+                      "name": "plain",
+                      "namespace": "demo-system"
+                    }
+                  ]
+                },
+                "status": {
+                  "content": {
+                    "kind": "CardTemplateList",
+                    "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                    "metadata": {},
+                    "items": [
+                      {
+                        "kind": "CardTemplate",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "name": "plain",
+                          "namespace": "demo-system",
+                          "uid": "f8dd79c5-0c25-437c-b67e-c470ed42f27d",
+                          "resourceVersion": "238526",
+                          "generation": 1,
+                          "creationTimestamp": "2024-01-24T16:18:48Z",
+                          "annotations": {
+                            "krateo.io/allowed-verbs": "get,list",
+                            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"widgets.ui.krateo.io/v1alpha1\",\"kind\":\"CardTemplate\",\"metadata\":{\"annotations\":{},\"name\":\"plain\",\"namespace\":\"demo-system\"},\"spec\":{\"app\":{\"color\":\"red\",\"content\":\"Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \\nSuspendisse id venenatis orci, a semper ante. \\nMauris convallis sagittis tincidunt. \\nAenean egestas auctor interdum.\",\"tags\":\"lorem,ipsum\",\"title\":\"Lorem Ipsum\"}}}\n"
+                          },
+                          "managedFields": [
+                            {
+                              "manager": "kubectl-client-side-apply",
+                              "operation": "Update",
+                              "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                              "time": "2024-01-24T16:18:48Z",
+                              "fieldsType": "FieldsV1",
+                              "fieldsV1": {
+                                "f:metadata": {
+                                  "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                  }
+                                },
+                                "f:spec": {
+                                  ".": {},
+                                  "f:app": {
+                                    ".": {},
+                                    "f:color": {},
+                                    "f:content": {},
+                                    "f:tags": {},
+                                    "f:title": {}
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "spec": {
+                          "app": {
+                            "title": "Lorem Ipsum",
+                            "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
+                            "color": "red",
+                            "tags": "lorem,ipsum"
+                          }
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              "title": "Lorem Ipsum",
+                              "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
+                              "color": "red",
+                              "tags": "lorem,ipsum"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "name": "one",
+                  "namespace": "demo-system",
+                  "uid": "5ec6106f-4c19-4383-8b98-b99f1eba1a3f",
+                  "resourceVersion": "238604",
+                  "generation": 1,
+                  "creationTimestamp": "2024-01-24T16:29:33Z",
+                  "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"layout.ui.krateo.io/v1alpha1\",\"kind\":\"Column\",\"metadata\":{\"annotations\":{},\"name\":\"one\",\"namespace\":\"demo-system\"},\"spec\":{\"app\":{\"props\":{\"width\":\"12\"}},\"cardTemplateListRef\":[{\"name\":\"one\",\"namespace\":\"demo-system\"}]}}\n"
+                  },
+                  "managedFields": [
+                    {
+                      "manager": "kubectl-client-side-apply",
+                      "operation": "Update",
+                      "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                      "time": "2024-01-24T16:29:33Z",
+                      "fieldsType": "FieldsV1",
+                      "fieldsV1": {
+                        "f:metadata": {
+                          "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                          }
+                        },
+                        "f:spec": {
+                          ".": {},
+                          "f:app": {
+                            ".": {},
+                            "f:props": {
+                              ".": {},
+                              "f:width": {}
+                            }
+                          },
+                          "f:cardTemplateListRef": {}
+                        }
+                      }
+                    }
+                  ]
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "8"
+                    }
+                  },
+                  "cardTemplateListRef": [
+                    {
+                      "name": "one",
+                      "namespace": "demo-system"
+                    }
+                  ]
+                },
+                "status": {
+                  "content": {
+                    "kind": "CardTemplateList",
+                    "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                    "metadata": {},
+                    "items": [
+                      {
+                        "kind": "CardTemplate",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "name": "one",
+                          "namespace": "demo-system",
+                          "uid": "a9560ec8-53ff-487c-9d29-d902533ed435",
+                          "resourceVersion": "238527",
+                          "generation": 1,
+                          "creationTimestamp": "2024-01-24T16:18:48Z",
+                          "annotations": {
+                            "krateo.io/allowed-verbs": "get,list",
+                            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"widgets.ui.krateo.io/v1alpha1\",\"kind\":\"CardTemplate\",\"metadata\":{\"annotations\":{},\"name\":\"one\",\"namespace\":\"demo-system\"},\"spec\":{\"api\":[{\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"headers\":[\"Accept: application/json\"],\"name\":\"api1\",\"path\":\"/todos/1\",\"verb\":\"GET\"},{\"dependOn\":\"api1\",\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"headers\":[\"Accept: application/json\"],\"name\":\"api2\",\"path\":\"${ \\\"/todos/\\\" + (.api1.id|tostring) +  \\\"/comments\\\" }\",\"verb\":\"GET\"}],\"app\":{\"actions\":[{\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"name\":\"view\",\"path\":\"${ \\\"/todos/1/comments/\\\" + (.api2.items[0].id|tostring) }\"}],\"content\":\"${ .api2.items[0].body }\",\"title\":\"${ .api2.items[0] | (.name  + \\\" -\\u003e \\\" + .email) }\"}}}\n"
+                          },
+                          "managedFields": [
+                            {
+                              "manager": "kubectl-client-side-apply",
+                              "operation": "Update",
+                              "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                              "time": "2024-01-24T16:18:48Z",
+                              "fieldsType": "FieldsV1",
+                              "fieldsV1": {
+                                "f:metadata": {
+                                  "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                  }
+                                },
+                                "f:spec": {
+                                  ".": {},
+                                  "f:api": {},
+                                  "f:app": {
+                                    ".": {},
+                                    "f:actions": {},
+                                    "f:content": {},
+                                    "f:title": {}
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "spec": {
+                          "app": {
+                            "title": "${ .api2.items[0] | (.name  + \" -\u003e \" + .email) }",
+                            "content": "${ .api2.items[0].body }",
+                            "actions": [
+                              {
+                                "name": "view",
+                                "path": "${ \"/todos/1/comments/\" + (.api2.items[0].id|tostring) }",
+                                "verb": "GET",
+                                "endpointRef": {
+                                  "name": "typicode-endpoint",
+                                  "namespace": "demo-system"
+                                }
+                              }
+                            ]
+                          },
+                          "api": [
+                            {
+                              "name": "api1",
+                              "path": "/todos/1",
+                              "verb": "GET",
+                              "headers": [
+                                "Accept: application/json"
+                              ],
+                              "endpointRef": {
+                                "name": "typicode-endpoint",
+                                "namespace": "demo-system"
+                              }
+                            },
+                            {
+                              "name": "api2",
+                              "path": "${ \"/todos/\" + (.api1.id|tostring) +  \"/comments\" }",
+                              "verb": "GET",
+                              "headers": [
+                                "Accept: application/json"
+                              ],
+                              "endpointRef": {
+                                "name": "typicode-endpoint",
+                                "namespace": "demo-system"
+                              },
+                              "dependOn": "api1"
+                            }
+                          ]
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              "title": "id labore ex et quam laborum -\u003e Eliseo@gardner.biz",
+                              "content": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+                              "actions": [
+                                {
+                                  "name": "view",
+                                  "path": "/todos/1/comments/1",
+                                  "verb": "GET",
+                                  "endpointRef": {
+                                    "name": "typicode-endpoint",
+                                    "namespace": "demo-system"
+                                  }
+                                }
+                              ],
+                              "allowedActions": [
+                                "view"
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "kind": "CardTemplate",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "name": "one",
+                          "namespace": "demo-system",
+                          "uid": "a9560ec8-53ff-487c-9d29-d902533ed435",
+                          "resourceVersion": "238527",
+                          "generation": 1,
+                          "creationTimestamp": "2024-01-24T16:18:48Z",
+                          "annotations": {
+                            "krateo.io/allowed-verbs": "get,list",
+                            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"widgets.ui.krateo.io/v1alpha1\",\"kind\":\"CardTemplate\",\"metadata\":{\"annotations\":{},\"name\":\"one\",\"namespace\":\"demo-system\"},\"spec\":{\"api\":[{\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"headers\":[\"Accept: application/json\"],\"name\":\"api1\",\"path\":\"/todos/1\",\"verb\":\"GET\"},{\"dependOn\":\"api1\",\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"headers\":[\"Accept: application/json\"],\"name\":\"api2\",\"path\":\"${ \\\"/todos/\\\" + (.api1.id|tostring) +  \\\"/comments\\\" }\",\"verb\":\"GET\"}],\"app\":{\"actions\":[{\"endpointRef\":{\"name\":\"typicode-endpoint\",\"namespace\":\"demo-system\"},\"name\":\"view\",\"path\":\"${ \\\"/todos/1/comments/\\\" + (.api2.items[0].id|tostring) }\"}],\"content\":\"${ .api2.items[0].body }\",\"title\":\"${ .api2.items[0] | (.name  + \\\" -\\u003e \\\" + .email) }\"}}}\n"
+                          },
+                          "managedFields": [
+                            {
+                              "manager": "kubectl-client-side-apply",
+                              "operation": "Update",
+                              "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                              "time": "2024-01-24T16:18:48Z",
+                              "fieldsType": "FieldsV1",
+                              "fieldsV1": {
+                                "f:metadata": {
+                                  "f:annotations": {
+                                    ".": {},
+                                    "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                                  }
+                                },
+                                "f:spec": {
+                                  ".": {},
+                                  "f:api": {},
+                                  "f:app": {
+                                    ".": {},
+                                    "f:actions": {},
+                                    "f:content": {},
+                                    "f:title": {}
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "spec": {
+                          "app": {
+                            "title": "${ .api2.items[0] | (.name  + \" -\u003e \" + .email) }",
+                            "content": "${ .api2.items[0].body }",
+                            "actions": [
+                              {
+                                "name": "view",
+                                "path": "${ \"/todos/1/comments/\" + (.api2.items[0].id|tostring) }",
+                                "verb": "GET",
+                                "endpointRef": {
+                                  "name": "typicode-endpoint",
+                                  "namespace": "demo-system"
+                                }
+                              }
+                            ]
+                          },
+                          "api": [
+                            {
+                              "name": "api1",
+                              "path": "/todos/1",
+                              "verb": "GET",
+                              "headers": [
+                                "Accept: application/json"
+                              ],
+                              "endpointRef": {
+                                "name": "typicode-endpoint",
+                                "namespace": "demo-system"
+                              }
+                            },
+                            {
+                              "name": "api2",
+                              "path": "${ \"/todos/\" + (.api1.id|tostring) +  \"/comments\" }",
+                              "verb": "GET",
+                              "headers": [
+                                "Accept: application/json"
+                              ],
+                              "endpointRef": {
+                                "name": "typicode-endpoint",
+                                "namespace": "demo-system"
+                              },
+                              "dependOn": "api1"
+                            }
+                          ]
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              "title": "id labore ex et quam laborum -\u003e Eliseo@gardner.biz",
+                              "content": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium",
+                              "actions": [
+                                {
+                                  "name": "view",
+                                  "path": "/todos/1/comments/1",
+                                  "verb": "GET",
+                                  "endpointRef": {
+                                    "name": "typicode-endpoint",
+                                    "namespace": "demo-system"
+                                  }
+                                }
+                              ],
+                              "allowedActions": [
+                                "view"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
     }
   }
 
-  const getContent = useCallback((data, i): ReactElement => {
+  const getColProps = (size) => {
+    if (isNaN(size)) {
+      return {xs: 24, md: 24}
+    } else {
+      return {xs: 24, md: parseInt(size)}
+    }
+    // Col cases: 8-8-8, 6-6-6-6, 12-12, 24, 6-6-12, 8-16
+    // switch (size) {
+    //   case 1:
+    //     return {xs: 24, md: 6}
+    
+    //   case 2:
+    //     return {xs: 24, md: 8}
+    
+    //   case 3:
+    //     return {xs: 24, md: 12}
+    
+    //   case 4:
+    //     return {xs: 24, md: 16}
+    
+    //   default:
+    //     return {xs: 24, md: 24}
+    // }
+  }
+
+  // for all routes
+  const ___getContent = useCallback((data, i): ReactElement => {
     const renderComponent = (data, index) => {
       switch (data.component) {
         case "Row":
@@ -881,6 +1358,47 @@ const Page = ({clientId, url}: PageType) => {
   
         default: // null -> exit recoursive loop
           return <></>
+          break;
+      }
+    }
+
+    // recoursive function to scan page definition json
+    // data is the array of elements, root is an object
+    if (!data.length) {
+      // root element
+      return renderComponent(data, i);
+    } else {
+      return data.map((el, index) => renderComponent(el, index));
+    }
+  }, []);
+
+  // for "/test" route only
+  const getContent = useCallback((data, i): ReactElement => {
+    const renderComponent = (data, index) => {
+      switch (data.kind) {
+        case "Row":
+          return <Row key={data.metadata.uid} className={styles.row}>{ getContent(data.status.content.items, index+1) }</Row>
+          break;
+        case "Column":
+          return <Col key={data.metadata.uid} { ...getColProps(data.spec.app.props.width) } className={styles.col}>{ getContent(data.status.content.items, index+1) }</Col>
+          break;
+        case "Tabs":
+          return <Tabs key={data.metadata.uid} {...data.spec.app.props} className={styles.tabs}>{ getContent(data.status.content.items, index+1) }</Tabs>
+          break;
+        case "TabPane":
+          return <TabPane key={data.metadata.uid} tab={data.spec.app.props.label} className={styles.tabpane}>{ getContent(data.status.content.items, index+1) }</TabPane>
+          break;
+        case "Toolbar":
+          return <Toolbar key={data.metadata.uid}>{ getContent(data.status.content.items, index+1) }</Toolbar>
+          break;
+        default: 
+          if (data.apiVersion.indexOf("widgets") === 0) {
+            const Component = widgets[data.kind];
+            return data.status.cards.map((el, i) => <Component key={`widget_${data.metadata.uid}_$${i}`} {...el} />) 
+          } else {
+            // null -> exit recoursive loop
+            return <></>
+          }
           break;
       }
     }
