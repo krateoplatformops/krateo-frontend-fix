@@ -10,8 +10,11 @@
   .header {
     width: 100%;
 
+    > div:nth-child(2) {
+      min-width: calc(100% - 88px);
+    }
+
     .details {
-      width: 100%;
 
       .title {
         font-weight: 300;

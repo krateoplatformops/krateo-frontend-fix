@@ -30,7 +30,7 @@ const CardTemplate = ({id, icon, color, title, status, date, content, tags, acti
         <Space size="large" className={styles.header}>
           <Avatar style={{ backgroundColor: getColorCode(color) }} size={64} icon={<FontAwesomeIcon icon={icon} />} />
           <div className={styles.details}>
-            <Typography.Title className={styles.title} level={2}>{title}</Typography.Title>
+            <Typography.Title className={styles.title} ellipsis level={2} title={title}>{title}</Typography.Title>
             <Space className={styles.subTitle}>
               <div className={styles.status} style={{ color: color }}>{status}</div>
               <div className={styles.date}>{date}</div>
