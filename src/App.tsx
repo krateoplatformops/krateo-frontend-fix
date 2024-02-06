@@ -30,7 +30,7 @@ function App() {
       {
         routes: [
           {
-            label: "Dashboard",
+            label: "Catalog",
             path: "/",
             icon: getIcon("dashboard"),
             menu: true,

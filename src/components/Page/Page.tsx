@@ -18,6 +18,221 @@ const Page = ({clientId, url}: PageType) => {
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
 
+    // Catalog page
+    if (window.location.pathname === "/") {
+      return {
+        "kind": "Row",
+        "apiVersion": "layout.ui.krateo.io/v1alpha1",
+        "metadata": {
+          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbb",
+        },
+        "status": {
+          "content": {
+            "kind": "ColumnList",
+            "apiVersion": "layout.ui.krateo.io/v1alpha1",
+            "metadata": {
+              "uid": "e14d5e2d-1170-4360-9b86-827d527dabbc",
+            },
+            "items": [
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabbd",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "kind": "CardTemplateList",
+                    "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                    "metadata": {
+                      "uid": "e14d5e2d-1170-4360-9b86-827d527dabbe",
+                    },
+                    "items": [
+                      {
+                        "kind": "CardTemplate",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbf",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              "title": "Lorem Ipsum",
+                              "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
+                              "color": "red",
+                              "tags": "lorem,ipsum"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabbm",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "kind": "CardTemplateList",
+                    "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                    "metadata": {
+                      "uid": "e14d5e2d-1170-4360-9b86-827d527dabbh",
+                    },
+                    "items": [
+                      {
+                        "kind": "CardTemplate",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbi",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              "title": "Lorem Ipsum",
+                              "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
+                              "color": "red",
+                              "tags": "lorem,ipsum"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabbg",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ChartPie",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbq",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              title: "Templates",
+                              tooltip: "this is a beautiful pie chart",
+                              label: "used",
+                              value: 428,
+                              total: 695,
+                              status: "default"
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabb13",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ChartMultipleBars",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1jh",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbw",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              title: "Templates Trend",
+                              tooltip: "this is a beautiful pie chart",
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabb1",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "24"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ChartLine",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbw",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              title: "Templates Trend",
+                              tooltip: "this is a beautiful pie chart",
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+            ]
+          }
+        }
+      }
+    }
+
     // Temporary hack to show more pages
     if (window.location.pathname.indexOf("/templates") > -1) {
       return {
@@ -1392,7 +1607,10 @@ const Page = ({clientId, url}: PageType) => {
       setContentPage(getContent(data, 1)); // root
     }
 
-    if (data && isSuccess) {
+    if (window.location.pathname === "/") {
+      const response = fetchPage(clientId, url);
+      createPage(response);
+    } else if (data && isSuccess) {
       createPage(data);
     }
   }, [data, getContent, isSuccess]);

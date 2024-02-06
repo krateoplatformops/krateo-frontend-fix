@@ -17,7 +17,7 @@ $ export "VITE_BFF_API_BASE_URL=http://20.105.28.126:8443" && export "VITE_AUTHN
 ## Deploying
 Build application 
 ```sh
-$ export "VITE_BFF_API_BASE_URL=https://api.krateoplatformops.io" && export "VITE_AUTHN_API_BASE_URL=https://api.krateoplatformops.io/authn" &&  npm run build
+$ export "VITE_BFF_API_BASE_URL=http://20.105.44.127:8080" && export "VITE_AUTHN_API_BASE_URL=http://51.138.231.131:8080" &&  npm run vite build
 ```
 
 Copy content of _/build_ folder in your web server
