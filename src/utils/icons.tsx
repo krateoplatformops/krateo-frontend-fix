@@ -14,41 +14,31 @@ export const getIcon = (code: IconCode) => {
   switch (code) {
     case 'dashboard':
       return <Dashboard />
-      break;
 
     case 'projects':
       return <Projects />
-      break;
 
     case 'templates':
       return <Templates />
-      break;
 
     case 'providers':
       return <Providers />
-      break;
 
     case 'status':
       return <Status />
-      break;
 
     case 'organizations':
       return <Organizations />
-      break;
 
     case 'logs':
       return <Logs />
-      break;
 
     case 'endpoints':
       return <Endpoints />
-      break;
     
     case 'licenses':
       return <Licenses />
-      break;
     default:
       return ''
-      break;
   }
 }

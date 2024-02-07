@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { RouterProvider, createBrowserRouter, RouteObject, Link } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, RouteObject } from "react-router-dom";
 import Skeleton from "./components/Skeleton/Skeleton";
 import Page from "./components/Page/Page"
 import ErrorPage from "./pages/ErrorPage";
@@ -11,7 +11,6 @@ import Profile from "./pages/Profile";
 import { getIcon } from "./utils/icons";
 import { useGetAppDataQuery } from "./features/app/appApiSlice";
 import { Space, Spin, Typography, message } from "antd";
-import catchError from "./utils/catchError";
 import getClientIdFromPath from "./utils/getClientIdFromPath";
 import AuthGitHub from "./pages/Auth/AuthGitHub";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -21,11 +20,12 @@ library.add(fas)
 function App() {
   const clientId = getClientIdFromPath();
   const [router, setRouter] = useState<RouteObject[]>([]);
-  const {data, isLoading, isFetching, isError} = useGetAppDataQuery(clientId);
+  const {/*data,*/ isLoading, isFetching, isError} = useGetAppDataQuery(clientId);
   const [messageApi, contextHolder] = message.useMessage();
-  const messageKey = 'appMessageKey';
+  // const messageKey = 'appMessageKey';
 
-  const fetchPageData = (clientId) => {
+  const fetchPageData = (clientId: string) => {
+    console.log(clientId)
     return (
       {
         routes: [
@@ -104,7 +104,7 @@ function App() {
           path: "/",
           element: <Layout
                       menu={data.routes.filter(el => el.menu === true)}
-                      notifications={data.notifications}
+                      // notifications={data.notifications}
                     />,
           errorElement: <ErrorPage />,
           children: [...routes, {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Breadcrumb as AntBreadcrumb } from 'antd';
 import { BreadcrumbItemType, BreadcrumbSeparatorType } from 'antd/es/breadcrumb/Breadcrumb';
-import { Link, Params, useMatches } from 'react-router-dom';
+import { Link, useMatches } from 'react-router-dom';
 import styles from "./styles.module.scss";
 
 const Breadcrumb = () => {

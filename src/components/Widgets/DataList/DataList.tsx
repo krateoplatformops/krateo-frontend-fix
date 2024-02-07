@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 const DataList = ({prefix, data}: {prefix: string, data: DataListType[]}) => {
   const dispatch = useAppDispatch();
   const datalist = useSelector(selectDataList);
-  
+  console.log(prefix);
+
   // save data on Redux
   useEffect(() => {
     dispatch(setDataList(data))

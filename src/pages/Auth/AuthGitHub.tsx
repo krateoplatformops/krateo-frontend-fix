@@ -10,7 +10,7 @@ import { AuthModeType, AuthRequestType } from "../Login/type";
 const AuthGitHub = () => {
   const clientId = getClientIdFromPath();
   const [socialsAuthentication, {isError : isErrorAuth}] = useLazySocialAuthenticationQuery();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [showError, setShowError] = useState<boolean>(false);
   const {data, isSuccess: isSuccessModes, isError: isErrorModes} = useGetAuthModesQuery(clientId);
   const navigate = useNavigate();

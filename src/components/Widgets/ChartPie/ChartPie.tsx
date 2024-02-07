@@ -23,15 +23,10 @@ const ChartPie = ({title, tooltip, label, value, total, status}: ChartPieType) =
     switch (status) {
       case 'error':
         return [token.colorError, bgcolor]
-        break;
-
       case 'warning':
         return [token.colorWarning, bgcolor]
-        break;
-
       default:
         return [token.colorLink, bgcolor]
-        break;
     }
   };
 
