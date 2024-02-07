@@ -15,7 +15,6 @@ const Page = ({clientId, url}: PageType) => {
   const group = ls && JSON.parse(ls)?.groups[0]
   const {data, isLoading, isSuccess} = useGetPageContentQuery({clientId, url, username, group});
 
-  /*
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
 
@@ -67,6 +66,7 @@ const Page = ({clientId, url}: PageType) => {
                             {
                               "title": "Lorem Ipsum",
                               "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
+                              "icon": "server",
                               "color": "red",
                               "tags": "lorem,ipsum"
                             }
@@ -109,8 +109,14 @@ const Page = ({clientId, url}: PageType) => {
                             {
                               "title": "Lorem Ipsum",
                               "content": "Nulla quam lectus, venenatis at nunc nec, suscipit convallis sapien. \nSuspendisse id venenatis orci, a semper ante. \nMauris convallis sagittis tincidunt. \nAenean egestas auctor interdum.",
-                              "color": "red",
-                              "tags": "lorem,ipsum"
+                              "color": "blue",
+                              "icon": "code-branch",
+                              "tags": "lorem,ipsum",
+                              "allowedActions": ["remove"],
+                              "actions": [{
+                                "name": "remove",
+                                "verb": "DELETE",
+                              }]
                             }
                           ]
                         }
@@ -145,7 +151,7 @@ const Page = ({clientId, url}: PageType) => {
                           "cards": [
                             {
                               title: "Templates",
-                              tooltip: "this is a beautiful pie chart",
+                              tooltip: "this is a beautiful chart",
                               label: "used",
                               value: 428,
                               total: 695,
@@ -178,13 +184,13 @@ const Page = ({clientId, url}: PageType) => {
                         "kind": "ChartMultipleBars",
                         "apiVersion": "widgets.ui.krateo.io/v1alpha1jh",
                         "metadata": {
-                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbw",
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbwx4",
                         },
                         "status": {
                           "cards": [
                             {
                               title: "Templates Trend",
-                              tooltip: "this is a beautiful pie chart",
+                              tooltip: "this is a beautiful chart",
                             }
                           ]
                         },
@@ -219,7 +225,239 @@ const Page = ({clientId, url}: PageType) => {
                           "cards": [
                             {
                               title: "Templates Trend",
-                              tooltip: "this is a beautiful pie chart",
+                              tooltip: "this is a beautiful chart",
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabb13z",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ChartBars",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1jh",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbwx3",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              title: "Most used Templates",
+                              tooltip: "this is a beautiful chart",
+                              data: [
+                                {
+                                  label: "Lorem ipsum 1",
+                                  value: "82",
+                                  percentage: 23,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 2",
+                                  value: "124",
+                                  percentage: 68,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 3",
+                                  value: "75",
+                                  percentage: 16,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 4",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "normal"
+                                },
+                                {
+                                  label: "Lorem ipsum 5",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "normal"
+                                },
+                              ]
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabb13z1",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ChartBars",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1jh",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbwll",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              title: "Less used Templates",
+                              tooltip: "this is a beautiful chart",
+                              data: [
+                                {
+                                  label: "Lorem ipsum 1",
+                                  value: "82",
+                                  percentage: 23,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 2",
+                                  value: "124",
+                                  percentage: 68,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 3",
+                                  value: "75",
+                                  percentage: 16,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 4",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "exception"
+                                },
+                                {
+                                  label: "Lorem ipsum 5",
+                                  value: "93",
+                                  percentage: 43,
+                                  color: "exception"
+                                },
+                              ]
+                            }
+                          ]
+                        },
+                      },
+                    ]
+                  }
+                }
+              },
+              {
+                "kind": "Column",
+                "apiVersion": "layout.ui.krateo.io/v1alpha1",
+                "metadata": {
+                  "uid": "e14d5e2d-1170-4360-9b86-827d527dabb13z2",
+                },
+                "spec": {
+                  "app": {
+                    "props": {
+                      "width": "12"
+                    }
+                  },
+                },
+                "status": {
+                  "content": {
+                    "items": [
+                      {
+                        "kind": "ButtonPanel",
+                        "apiVersion": "widgets.ui.krateo.io/v1alpha1jh",
+                        "metadata": {
+                          "uid": "e14d5e2d-1170-4360-9b86-827d527dabbwx1",
+                        },
+                        "status": {
+                          "cards": [
+                            {
+                              button: {
+                                label: "Filters",
+                                icon: "filter",
+                                badge: true,
+                              },
+                              panel: {
+                                title: "Filters",
+                                description: "Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+                                size: "default",
+                                content: {
+                                  element: "FormGenerator",
+                                  props: { // pass the data to render fields
+                                    title: "Form Name",
+                                    description: "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.",
+                                    endpoint: null, // endpoint to call submitting values in POST
+                                    prefix: "TemplateList", // label to connect data list
+                                    fields: [
+                                      {
+                                        name: "title",
+                                        type: "text",
+                                        label: "Title",
+                                        rules: [],
+                                        placeholder: "type a title",
+                                      },
+                                      {
+                                        name: "content",
+                                        type: "text",
+                                        label: "Content",
+                                        rules: [],
+                                        placeholder: "type a text",
+                                      },
+                                      {
+                                        name: "status",
+                                        type: "radioGroup",
+                                        label: "Status",
+                                        rules: [],
+                                        placeholder: "",
+                                        extra: {
+                                          options: [
+                                            {
+                                              label: "active",
+                                              value: "",
+                                            },
+                                            {
+                                              label: "archived",
+                                              value: "archived",
+                                            },
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        name: "date",
+                                        type: "datetime",
+                                        label: "archived date",
+                                        rules: [],
+                                        placeholder: "",
+                                        initialValue: "",
+                                        extra: {
+                                          format: "DD MMM YYYY",
+                                        }
+                                      },
+                                    ]
+                                  }
+                                }
+                              }
                             }
                           ]
                         },
@@ -263,7 +501,7 @@ const Page = ({clientId, url}: PageType) => {
                               element: "ChartPie",
                               props: {
                                 title: "Templates",
-                                tooltip: "this is a beautiful pie chart",
+                                tooltip: "this is a beautiful chart",
                                 label: "used",
                                 value: 428,
                                 total: 695,
@@ -642,7 +880,7 @@ const Page = ({clientId, url}: PageType) => {
                               element: "ChartPie",
                               props: {
                                 title: "Projects",
-                                tooltip: "this is a beautiful pie chart",
+                                tooltip: "this is a beautiful chart",
                                 label: "",
                                 value: 428,
                                 total: 695,
@@ -1526,7 +1764,6 @@ const Page = ({clientId, url}: PageType) => {
       }
     }
   }
-  */
 
   const getColProps = (size) => {
     if (isNaN(size)) {
@@ -1587,6 +1824,7 @@ const Page = ({clientId, url}: PageType) => {
     }
 
     if (window.location.pathname === "/") {
+      // mock data for root only
       const response = fetchPage(clientId, url);
       createPage(response);
     } else if (data && isSuccess) {
