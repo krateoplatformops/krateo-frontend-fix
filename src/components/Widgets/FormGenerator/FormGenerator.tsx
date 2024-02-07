@@ -4,7 +4,6 @@ import dayjs, { Dayjs } from "dayjs";
 import { usePostContentMutation } from "../../../features/common/commonApiSlice";
 import { useAppDispatch } from "../../../redux/hooks";
 import { DataListFilterType, setFilters } from "../../../features/dataList/dataListSlice";
-import { useWatch } from "antd/es/form/Form";
 
 type FieldType = {
 	name: string,
@@ -38,18 +37,13 @@ type FieldType = {
 	}[]
 }
 
-const FormGenerator = ({title, description, endpoint, initialValues, prefix, fields, onClose }) => {
+const FormGenerator = ({title, endpoint, initialValues, prefix, fields, onClose }) => {
 
 	const [postContent, { isLoading }] = usePostContentMutation();
 	const messageKey = 'formGeneratorMessageKey';
 	const [messageApi, contextHolder] = message.useMessage();
 	const [form] = Form.useForm();
 	const dispatch = useAppDispatch();
-
-	// useEffect(() => {
-	// 	if (initialValues)
-	// 		form.setFieldsValue(initialValues)
-	// }, [form, initialValues])
 
 	const renderField = (field: FieldType) => {
 		switch (field.type) {

@@ -6,9 +6,7 @@ import styles from "./styles.module.scss";
 
 const { Header, Sider, Content } = AntLayout;
 
-const Layout = ({menu, notifications}) => {
-  // const [drawerData, setDrawerData] = useState<DrawerPanelType>();
-  // const 
+const Layout = ({menu}) => {
   return (
     <AntLayout className={styles.layout}>
       <Sider
