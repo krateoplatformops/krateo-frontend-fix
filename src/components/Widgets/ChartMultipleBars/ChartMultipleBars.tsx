@@ -65,6 +65,7 @@ const mockData:ChartMultipleBarsDataType[] = [
   },
 ];
 
+/*
 const _mockData:ChartMultipleBarsDataType[] = [
   {
     label: "MySQL",
@@ -107,6 +108,7 @@ const _mockData:ChartMultipleBarsDataType[] = [
     ]
   },
 ];
+*/
 
 type ChartMultipleBarsDataType = {
   label: string;

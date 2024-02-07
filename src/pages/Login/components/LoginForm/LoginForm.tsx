@@ -21,7 +21,7 @@ const LoginForm = ({
         autoComplete="off"
         disabled={isLoading}
         requiredMark={false}
-        initialValues={{username: 'cyberjoker', password: '123456'}}
+        // initialValues={{username: 'cyberjoker', password: '123456'}}
       >
         <Form.Item
           label="Username"

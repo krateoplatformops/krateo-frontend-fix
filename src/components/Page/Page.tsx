@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import widgets from "../Widgets/index";
-import { Col, Row, Space, Tabs } from "antd";
+import { Col, Row, Tabs } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 import { useGetPageContentQuery } from "../../features/page/pageApiSlice";
 import { PageType } from "./type";
@@ -13,8 +13,9 @@ const Page = ({clientId, url}: PageType) => {
   const ls = localStorage.getItem("user");
   const username = ls && JSON.parse(ls)?.user.username;
   const group = ls && JSON.parse(ls)?.groups[0]
-  const {data, isLoading, isError, isSuccess} = useGetPageContentQuery({clientId, url, username, group});
+  const {data, isLoading, isSuccess} = useGetPageContentQuery({clientId, url, username, group});
 
+  /*
   const fetchPage = (clientId: string, url: string) => {
     console.log(clientId, url);
 
@@ -1525,6 +1526,7 @@ const Page = ({clientId, url}: PageType) => {
       }
     }
   }
+  */
 
   const getColProps = (size) => {
     if (isNaN(size)) {
@@ -1532,23 +1534,6 @@ const Page = ({clientId, url}: PageType) => {
     } else {
       return {xs: 24, md: parseInt(size)}
     }
-    // Col cases: 8-8-8, 6-6-6-6, 12-12, 24, 6-6-12, 8-16
-    // switch (size) {
-    //   case 1:
-    //     return {xs: 24, md: 6}
-    
-    //   case 2:
-    //     return {xs: 24, md: 8}
-    
-    //   case 3:
-    //     return {xs: 24, md: 12}
-    
-    //   case 4:
-    //     return {xs: 24, md: 16}
-    
-    //   default:
-    //     return {xs: 24, md: 24}
-    // }
   }
 
   const getContent = useCallback((data, i): ReactElement => {
@@ -1556,19 +1541,14 @@ const Page = ({clientId, url}: PageType) => {
       switch (data.kind) {
         case "Row":
           return <Row key={data.metadata.uid} className={styles.row}>{ getContent(data.status.content.items, index+1) }</Row>
-          break;
         case "Column":
           return <Col key={data.metadata.uid} { ...getColProps(data.spec.app.props.width) } className={styles.col}>{ getContent(data.status.content.items, index+1) }</Col>
-          break;
         case "Tabs":
           return <Tabs key={data.metadata.uid} {...data.spec.app.props} className={styles.tabs}>{ getContent(data.status.content.items, index+1) }</Tabs>
-          break;
         case "TabPane":
           return <TabPane key={data.metadata.uid} tab={data.spec.app.props.label} className={styles.tabpane}>{ getContent(data.status.content.items, index+1) }</TabPane>
-          break;
         case "Toolbar":
           return <Toolbar key={data.metadata.uid}>{ getContent(data.status.content.items, index+1) }</Toolbar>
-          break;
         default: 
           if (data.apiVersion?.indexOf("widgets") === 0) {
             const Component = widgets[data.kind];
@@ -1577,7 +1557,6 @@ const Page = ({clientId, url}: PageType) => {
             // null -> exit recoursive loop
             return <></>
           }
-          break;
       }
     }
 
