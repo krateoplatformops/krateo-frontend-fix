@@ -54,11 +54,18 @@ function App() {
     )
   }
 
+  const getConfiguration = async () => {
+    const configFile = await fetch("/config.json");
+    const configJson = await configFile.json();
+    localStorage.setItem("K_config", JSON.stringify(configJson));
+  }
+
   useEffect(() => {
     if (clientId) {
       // get application data (after logged)
       const result = fetchPageData(clientId);
       createRoutes(clientId, result);
+      getConfiguration();
     }
   }, [clientId]);
 
