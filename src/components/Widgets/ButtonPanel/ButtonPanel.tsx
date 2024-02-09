@@ -6,6 +6,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { getColorCode } from "../../../utils/colors";
 import { useSelector } from "react-redux";
 import { selectFilters } from "../../../features/dataList/dataListSlice";
+import dayjs from "dayjs";
 
 type ButtonPanelType = {
   button: {
@@ -34,7 +35,7 @@ const ButtonPanel = ({button, panel}: ButtonPanelType) => {
   const generateInitialValues = () => {
     const iv = {};
     filters.forEach(f => {
-      iv[f.fieldName] = f.fieldValue
+      iv[f.fieldName] = f.fieldType === "datetime" ? dayjs(f.fieldValue as string) : f.fieldValue
     })
     return iv;
   }

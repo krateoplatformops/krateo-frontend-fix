@@ -20,7 +20,11 @@ export type DataListType = {
   }
 }
 
-export type DataListFilterType = { fieldType: string, fieldName: string, fieldValue: string | string[] }
+export type DataListFilterType = {
+  fieldType: string, 
+  fieldName: string, 
+  fieldValue: string | string[],
+}
 
 export type DataListState = {
   // prefix: string,
