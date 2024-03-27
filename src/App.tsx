@@ -29,9 +29,16 @@ function App() {
       {
         routes: [
           {
-            label: "Catalog",
+            label: "Dashboard",
             path: "/",
             icon: getIcon("dashboard"),
+            endpoint: "/",
+            menu: true,
+          },
+          {
+            label: "Projects",
+            path: "/projects",
+            icon: getIcon('projects'),
             endpoint: "/",
             menu: true,
           },
@@ -40,13 +47,6 @@ function App() {
             path: "/templates",
             icon: getIcon('templates'),
             endpoint: "/apis/layout.ui.krateo.io/rows/two",
-            menu: true,
-          },
-          {
-            label: "Project",
-            path: "/projects",
-            icon: getIcon('projects'),
-            endpoint: "/",
             menu: true,
           },
           {
