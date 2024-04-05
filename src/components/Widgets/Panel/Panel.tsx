@@ -1,29 +1,30 @@
 import { Card, Space, Typography } from "antd";
+import useParseData from "../../../hooks/useParseData";
 import styles from "./styles.module.scss";
-import widgets from "..";
 
 const Panel = ({title, content}) => {
+  const [getContent] = useParseData()
+
   let panelContent;
 
   if (Array.isArray(content)) {
     panelContent = content.map(el => {
-      const Component = widgets[el.kind];
-      return <Component {...el.spec.app.props} />
+      return getContent(el, 1);
     })
   } else {
-    const Component = widgets[content.kind];
-    panelContent = <Component {...content.spec.app.props} />
+    panelContent = getContent(content, 1);
   }
 
   return (
     <Card
       className={styles.card}
-      title={
+      title={(title && title !== "") ?
         <Space size="large" className={styles.header}>
           <div className={styles.details}>
             <Typography.Title className={styles.title} ellipsis level={2} title={title}>{title}</Typography.Title>
           </div>
         </Space>
+        : undefined
       }
     >
       {panelContent}
