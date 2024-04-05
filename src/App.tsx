@@ -28,13 +28,20 @@ function App() {
     return (
       {
         routes: [
-          // {
-          //   label: "Dashboard",
-          //   path: "/",
-          //   icon: getIcon("dashboard"),
-          //   endpoint: "/",
-          //   menu: true,
-          // },
+          {
+            label: "Dashboard",
+            path: "/",
+            icon: getIcon("dashboard"),
+            endpoint: "/",
+            menu: true,
+          },
+          {
+            label: "Projects",
+            path: "/projects",
+            icon: getIcon('projects'),
+            endpoint: "/",
+            menu: true,
+          },
           {
             label: "Templates",
             path: "/templates",
@@ -42,17 +49,10 @@ function App() {
             endpoint: "/apis/layout.ui.krateo.io/rows/two?sub=cyberjoker&orgs=devs&namespace=demo-system",
             menu: true,
           },
-          // {
-          //   label: "Projects",
-          //   path: "/projects",
-          //   icon: getIcon('projects'),
-          //   endpoint: "/",
-          //   menu: true,
-          // },
-          // {
-          //   path: "/projects/:projectID",
-          //   menu: false,
-          // },
+          {
+            path: "/projects/:projectID",
+            menu: false,
+          },
           {
             path: "/projects/:projectID/:deploymentID",
             menu: false,
