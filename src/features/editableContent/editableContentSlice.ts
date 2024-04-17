@@ -3,19 +3,19 @@ import { RootState } from "../../redux/store";
 
 type StateType = "idle" | "loading" | "success" | "error"
 
-export type DynamicContentState = {
+export type EditableContentState = {
   prefix: string,
   status: StateType,
-  content: object[]
+  content: React.ReactElement[]
 }
 
-const initialState: DynamicContentState[] = []
+const initialState: EditableContentState[] = []
 
-export const dynamicContentSlice = createSlice({
-  name: 'dynamicContent',
+export const editableContentSlice = createSlice({
+  name: 'editableContent',
   initialState,
   reducers: {
-    setDynamicContentState: (state, action: PayloadAction<{prefix: string, status: StateType}>) => {
+    setEditableContentState: (state, action: PayloadAction<{prefix: string, status: StateType}>) => {
       if (state.find(el => el.prefix === action.payload.prefix)) {
         state = state.map(el => {
           if (el.prefix === action.payload.prefix) {
@@ -31,7 +31,7 @@ export const dynamicContentSlice = createSlice({
         })
       }
     },
-    setDynamicContent: (state, action: PayloadAction<DynamicContentState>) => {
+    setEditableContent: (state, action: PayloadAction<EditableContentState>) => {
       if (state.find(el => el.prefix === action.payload.prefix)) {
         state = state.map(el => {
           if (el.prefix === action.payload.prefix) {
@@ -48,7 +48,7 @@ export const dynamicContentSlice = createSlice({
         })
       }
     },
-    clearDynamicContent: (state, action: PayloadAction<{prefix: string}>) => {
+    clearEditableContent: (state, action: PayloadAction<{prefix: string}>) => {
       state = state.map(el => {
         if (el.prefix === action.payload.prefix) {
           el.status = "idle";
@@ -60,7 +60,7 @@ export const dynamicContentSlice = createSlice({
   }
 });
 
-export const { setDynamicContent, clearDynamicContent, setDynamicContentState } = dynamicContentSlice.actions;
+export const { setEditableContent, clearEditableContent, setEditableContentState } = editableContentSlice.actions;
 
-export default dynamicContentSlice.reducer;
-export const selectDynamicContent = (state: RootState) => state.dynamicContent;
+export default editableContentSlice.reducer;
+export const selectEditableContent = (state: RootState) => state.editableContent;
