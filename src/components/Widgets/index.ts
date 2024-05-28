@@ -2,6 +2,7 @@ import ChartPie from "./ChartPie/ChartPie";
 import ChartLine from "./ChartLine/ChartLine";
 import ChartBars from "./ChartBars/ChartBars";
 import ChartMultipleBars from "./ChartMultipleBars/ChartMultipleBars";
+import ChartFlow from "./ChartFlow/ChartFlow";
 import CardTemplate from "./CardTemplate/CardTemplate";
 import FormGenerator from "./FormGenerator/FormGenerator";
 import Button from "./Button/Button";
@@ -19,6 +20,7 @@ const widgets = {
   "ChartLine": ChartLine,
   "ChartBars": ChartBars,
   "ChartMultipleBars": ChartMultipleBars,
+  "ChartFlow": ChartFlow,
   "CardTemplate": CardTemplate,
   "FormGenerator": FormGenerator,
   "Button": Button,
