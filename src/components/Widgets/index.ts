@@ -14,6 +14,7 @@ import DynamicContent from "./DynamicContent/DynamicContent";
 import EditableContent from "./EditableContent/EditableContent";
 import EditableList from "./EditableList/EditableList";
 import CardTemplateList from "./CardTemplateList/CardTemplateList";
+import CardTemplate from "./CardTemplate/CardTemplate";
 
 const widgets = {
   "ChartPie": ChartPie,
@@ -22,14 +23,15 @@ const widgets = {
   "ChartMultipleBars": ChartMultipleBars,
   "ChartFlow": ChartFlow,
   "CardTemplateList": CardTemplateList,
+  "card": CardTemplate,
   "FormGenerator": FormGenerator,
-  "Button": Button,
+  "button": Button,
   "DataList": DataList,
-  "Panel": Panel,
+  "panel": Panel,
   "RichElement": RichElement,
   "RichRow": RichRow,
   "DynamicContent": DynamicContent,
-  "Paragraph": Paragraph,
+  "paragraph": Paragraph,
   "EditableContent": EditableContent,
   "EditableList": EditableList,
 }
