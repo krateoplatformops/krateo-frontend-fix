@@ -232,11 +232,15 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 			// update endpoint
 			const name = values['metadata'].name;
 			const namespace = values['metadata'].namespace;
-
 			const arrEndPoint = formEndpoint.split("/");
+
+			// add namespace
 			arrEndPoint.splice(arrEndPoint.length - 1, 0, "namespaces");
 			arrEndPoint.splice(arrEndPoint.length - 1, 0, namespace);
+
+			// add name at the end
 			arrEndPoint.push(name);
+
 			const postEndpoint = arrEndPoint.join("/");
 			
 			// remove metadata from values
@@ -244,15 +248,15 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 
 			// update payload
 			const payload = {
-				"kind":"FireworksApp",
-				"apiVersion":"composition.krateo.io/v0-1-0",
+				"kind": data.status.content.kind,
+				"apiVersion": data.status.content.apiVersion,
 				"metadata":{
 					"name": name,
 					"namespace": namespace
 				},
 				"spec": values
 			}
-
+			
 			// submit values
 			if (!postLoading && !isPostError && !isPostSuccess) {
 				const response = await postContent({
