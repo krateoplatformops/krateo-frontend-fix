@@ -20,7 +20,7 @@ type FormGeneratorType = {
 
 const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClose }: FormGeneratorType) => {
 
-	const [postContent, { isLoading: postLoading, isSuccess: isPostSuccess, isError: isPostError, error: postError }] = usePostContentMutation();
+	const [postContent, { data: postData, isLoading: postLoading, isSuccess: isPostSuccess, isError: isPostError, error: postError }] = usePostContentMutation();
 	const { message } = App.useApp();
   const { catchError } = useCatchError();
 
@@ -291,6 +291,9 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 	useEffect(() => {
 		if (isPostSuccess) {
 			message.success('Operation successful');
+			// go to created element page if a specific props is true
+			console.log("postData", postData);
+			// navigate("");
 		}
 	}, [message, isPostSuccess]);
 
