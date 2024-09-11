@@ -28,14 +28,20 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 
 	// get fields
 	const {data, isLoading, isFetching, isSuccess, isError, error} = useGetContentQuery({endpoint: fieldsEndpoint?.replace("/form/", "/forms/")});
-	const [formData, setFormData] = useState<any>();
+	const [formData, setFormData] = useState<any>("idle");
 	const [formEndpoint, setFormEndpoint] = useState<string>();
 	const fieldsData: {type: string, name: string}[] = [];
 
 	useEffect(() => {
-		if (data?.status?.content?.schema?.properties && data?.status?.actions && isSuccess) {
-			setFormData(data.status.content.schema.properties); // set root node (/spec /metadata)
-			setFormEndpoint(data.status.actions.find(el => el.verb === "create")?.path); // set submit endpoint
+		if (isSuccess) {
+			if (data?.status?.content?.schema?.properties) {
+				setFormData(data.status.content.schema.properties); // set root node (/spec /metadata)
+			} else {
+				setFormData(undefined)
+			}
+			if (data?.status?.actions) {
+				setFormEndpoint(data.status.actions.find(el => el.verb === "create")?.path); // set submit endpoint
+			}
 		}
 	}, [data, isSuccess])
 
@@ -54,14 +60,14 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 	}
 
 	const renderMetadataFields = () => {
-		if (formData) {
+		if (formData && formData.metadata) {
 			const fieldsList = parseData({ properties: {metadata: formData.metadata}, required: [], type: 'object' }, "");
 			return fieldsList;
 		}
 	}
 
 	const renderFields = () => {
-		if (formData) {
+		if (formData && formData.spec) {
 			const fieldsList = parseData(formData.spec, "");
 			return fieldsList;
 		}
@@ -81,7 +87,7 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 				}
 			})
 		}
-		parseData(formData.spec, "");
+		if (formData.spec) parseData(formData.spec, "");
 	}
 
 	const renderLabel = (path: string, label: string) => {
@@ -311,7 +317,7 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 		isLoading || isFetching ?
 				<Skeleton />
 		:
-		formData && isSuccess ?
+		formData && formData.spec && isSuccess ?
 		<div className={styles.formGenerator}>
 			<Typography.Text strong>{title}</Typography.Text>
 			<Typography.Paragraph>{description}</Typography.Paragraph>
@@ -346,7 +352,7 @@ const FormGenerator = ({title, description, fieldsEndpoint, form, prefix, onClos
 			</div>
 		</div>
 		:
-		!formData && isSuccess ? <Result status="warning" title="Ops! Something didn't work" subTitle="Unable to retrieve content data" />
+		(formData === undefined || (formData && Object.keys(formData).length === 0)) && isSuccess ? <Result status="warning" title="Ops! Something didn't work" subTitle="Unable to retrieve content data" />
 		:
 		isError ?
 			catchError(error, "result")
