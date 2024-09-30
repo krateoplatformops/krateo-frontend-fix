@@ -475,3 +475,20 @@ Copy content of _/build_ folder in your web server
   commands: "[{command: "xyz", label: "lorem ipsum"}]",
 }
 
+# TableData
+/widget-samples/tabledata.png
+
+{
+  pageSize?: number
+  columns: {
+    key: string
+    title: string,
+  }[],
+  data: {
+    rowKey: string
+    dataRow: {
+      columnKey: string,
+      value: string
+    }[]
+  }[]
+}
