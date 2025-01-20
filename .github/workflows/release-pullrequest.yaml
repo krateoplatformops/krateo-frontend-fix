@@ -13,7 +13,7 @@ jobs:
     name: Build and Push
     strategy:
       matrix:
-        runner: [buildjet-2vcpu-ubuntu-2204-arm, buildjet-2vcpu-ubuntu-2204]
+        runner: [buildjet-2vcpu-ubuntu-2204]
         include:
           - runner: buildjet-2vcpu-ubuntu-2204
             platform: linux/amd64
