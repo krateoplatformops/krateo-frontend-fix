@@ -41,7 +41,7 @@ jobs:
           push: false
           platforms: linux/amd64
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY }}/${{ github.repository }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.REGISTRY }}/krateoplatformops/krateo-frontend,push-by-digest=true,name-canonical=true,push=true
 
   package-arm64:
     runs-on: buildjet-4vcpu-ubuntu-2204-arm
@@ -75,4 +75,4 @@ jobs:
           push: false
           platforms: linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY }}/${{ github.repository }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.REGISTRY }}/krateoplatformops/krateo-frontend,push-by-digest=true,name-canonical=true,push=true

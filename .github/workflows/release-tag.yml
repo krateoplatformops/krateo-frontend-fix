@@ -40,7 +40,7 @@ jobs:
           push: true
           platforms: linux/amd64
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY }}/${{ github.repository }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.REGISTRY }}/krateoplatformops/krateo-frontend,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
         run: |
@@ -88,7 +88,7 @@ jobs:
           push: true
           platforms: linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY }}/${{ github.repository }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.REGISTRY }}/krateoplatformops/krateo-frontend,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
         run: |
@@ -132,15 +132,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.repository_owner }}
+          username: ${{ github.repository_owner }} 
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create manifest list and push
         working-directory: /tmp/digests
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
-            $(printf '${{ env.REGISTRY }}/${{ github.repository }}@sha256:%s ' *)
+            $(printf '${{ env.REGISTRY }}/krateoplatformops/krateo-frontend@sha256:%s ' *)
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.meta.outputs.version }}
+          docker buildx imagetools inspect ${{ env.REGISTRY }}/krateoplatformops/krateo-frontend:${{ steps.meta.outputs.version }}
