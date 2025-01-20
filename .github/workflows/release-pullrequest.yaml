@@ -51,4 +51,4 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           push: false
-          tags: ghcr.io/krateoplatformops/krateo-frontend:2.1.28
+          tags: ghcr.io/krateoplatformops/krateo-frontend:2.1.30
